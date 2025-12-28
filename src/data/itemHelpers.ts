@@ -1,9 +1,5 @@
 import type { Item, KeywordTag, LinkSet, Period } from "./detailsData";
 
-/* ----------------------------------
- * Kinds
- * ---------------------------------- */
-
 export type Kind = "Project" | "Publication";
 
 export function isProject(item: Item): item is Extract<Item, { achievements?: string[] }> {
@@ -13,10 +9,6 @@ export function isProject(item: Item): item is Extract<Item, { achievements?: st
 export function getKind(item: Item): Kind {
   return isProject(item) ? "Project" : "Publication";
 }
-
-/* ----------------------------------
- * Links
- * ---------------------------------- */
 
 export type RightAction =
   | { kind: "doi" | "pdf"; href: string }
@@ -33,10 +25,6 @@ export function toDoiHref(raw?: string): string | null {
   return isHttpUrl(s) ? s : `https://doi.org/${s}`;
 }
 
-/**
- * "대표 외부 링크 1개"가 필요할 때 쓰는 함수.
- * (프로젝트: website 우선 / 퍼블리케이션: doi 우선 등)
- */
 export function resolveExternalHref(links?: LinkSet): string | null {
   if (!links) return null;
 
@@ -48,11 +36,6 @@ export function resolveExternalHref(links?: LinkSet): string | null {
   return null;
 }
 
-/**
- * 카드 오른쪽 액션(여러 개)을 만들 때 쓰는 함수.
- * - Project: logo + website
- * - Publication: doi + pdf
- */
 export function getRightActions(item: Item): RightAction[] {
   const out: RightAction[] = [];
 
@@ -75,10 +58,6 @@ export function getRightActions(item: Item): RightAction[] {
   return out;
 }
 
-/* ----------------------------------
- * Period
- * ---------------------------------- */
-
 export function formatPeriod(period?: Period): string | null {
   if (!period) return null;
 
@@ -90,7 +69,6 @@ export function formatPeriod(period?: Period): string | null {
       return `${period.from}–${period.to}`;
 
     case "ongoing":
-      // 네가 원하면 `${period.from}–present`로 바꿔도 됨
       return `${period.from}–`;
 
     default:
@@ -98,12 +76,6 @@ export function formatPeriod(period?: Period): string | null {
   }
 }
 
-/**
- * 정렬용 "대표 연도"를 뽑는다.
- * - year: value
- * - range: to
- * - ongoing: 현재 연도 취급
- */
 export function getSortYear(item: Item, nowYear = new Date().getFullYear()): number {
   const p = item.period;
   if (!p) return -1;
@@ -113,18 +85,10 @@ export function getSortYear(item: Item, nowYear = new Date().getFullYear()): num
   return nowYear;
 }
 
-/**
- * Publication 메타(현재는 period만).
- * 필요하면 " · publisher" 같은 것도 여기서 붙이면 됨.
- */
 export function formatPublicationMeta(item: Item): string | null {
   if (isProject(item)) return null;
   return formatPeriod(item.period);
 }
-
-/* ----------------------------------
- * Chips (filters)
- * ---------------------------------- */
 
 export type ChipKey =
   | `tag:${KeywordTag}`
@@ -178,10 +142,6 @@ export function sortChips(chips: ChipKey[], keywords: Record<string, { label: st
   });
 }
 
-/* ----------------------------------
- * Item sorting
- * ---------------------------------- */
-
 export function sortItems(a: Item, b: Item) {
   const ka = getKind(a);
   const kb = getKind(b);
@@ -196,9 +156,6 @@ export function sortItems(a: Item, b: Item) {
   return 0;
 }
 
-/* ----------------------------------
- * Filtering
- * ---------------------------------- */
 
 export function filterItems(items: Item[], selected: ChipKey[]) {
   if (!selected.length) return items;
@@ -209,10 +166,6 @@ export function filterItems(items: Item[], selected: ChipKey[]) {
     return chips.some((c) => selectedSet.has(c));
   });
 }
-
-/* ----------------------------------
- * sessionStorage (chip selection)
- * ---------------------------------- */
 
 export function readStoredChips(storageKey: string): ChipKey[] {
   try {
@@ -230,7 +183,6 @@ export function writeStoredChips(storageKey: string, keys: ChipKey[]) {
   try {
     sessionStorage.setItem(storageKey, JSON.stringify(keys));
   } catch {
-    // ignore
   }
 }
 
@@ -238,6 +190,5 @@ export function clearStoredChips(storageKey: string) {
   try {
     sessionStorage.removeItem(storageKey);
   } catch {
-    // ignore
   }
 }

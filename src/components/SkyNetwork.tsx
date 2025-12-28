@@ -14,19 +14,15 @@ export default function SkyNetwork({
   onSelectTag: Dispatch<SetStateAction<KeywordTag | null>>;
 }) {
   const skyRef = useRef<HTMLDivElement | null>(null);
-
-  // latest activeTag (avoid stale closure)
   const activeTagRef = useRef<KeywordTag | null>(null);
   useEffect(() => {
     activeTagRef.current = activeTag;
   }, [activeTag]);
-
   const starsRef = useRef<HTMLButtonElement[]>([]);
   const initialPosRef = useRef<Record<string, { left: number; top: number }>>(
     {}
   );
   const svgRef = useRef<SVGSVGElement | null>(null);
-
   const nodes = useMemo(() => NETWORK_DATA.nodes || [], []);
   const edgesRaw = useMemo(() => NETWORK_DATA.edges || [], []);
 
@@ -42,9 +38,6 @@ export default function SkyNetwork({
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
 
-    /* -------------------------
-       Create stars
-    -------------------------- */
     const nodeIdToIndex: Record<string, number> = {};
     const padding = 40;
     const rect = sky.getBoundingClientRect();
@@ -54,8 +47,6 @@ export default function SkyNetwork({
       const y = Math.random() * (rect.height - padding * 2) + padding;
 
       const button = document.createElement("button");
-
-      // ✅ hit area + centring
       button.className = [
         "absolute",
         "border-0 bg-transparent",
@@ -68,22 +59,16 @@ export default function SkyNetwork({
         "transition-[transform,text-shadow,opacity] duration-300",
         "hover:opacity-100 hover:scale-110 hover:[text-shadow:0_0_8px_rgba(255,255,255,0.9)]",
         "active:cursor-grabbing",
-        // keep keyframes class
         "star-float",
       ].join(" ");
 
       button.dataset.id = node.id;
       button.dataset.tag = node.id;
-
       button.style.left = `${x}px`;
       button.style.top = `${y}px`;
-      // text above node 느낌 유지 (조금만 줄임)
       button.style.padding = "1.0rem 0.6rem 0.35rem 0.6rem";
       button.style.setProperty("--delay", `${index * 0.3}s`);
-
       initialPosRef.current[node.id] = { left: x, top: y };
-
-      // ✅ node dot 6px 적용
       button.innerHTML = `
   <span
     style="
@@ -105,9 +90,6 @@ export default function SkyNetwork({
       starsRef.current.push(button);
     });
 
-    /* -------------------------
-       SVG lines
-    -------------------------- */
     const svgNS = "http://www.w3.org/2000/svg";
     const svg = document.createElementNS(svgNS, "svg");
     svg.setAttribute("class", "absolute inset-0 pointer-events-none");
@@ -218,11 +200,7 @@ export default function SkyNetwork({
       sky.classList.remove("focus-mode");
     };
 
-    /* -------------------------
-       Click handling
-    -------------------------- */
     const onStarClick = (star: HTMLButtonElement) => (e: MouseEvent) => {
-      // drag 직후 click 차단
       if ((star as any)._dragging) return;
 
       e.stopPropagation();
@@ -241,7 +219,6 @@ export default function SkyNetwork({
 
       const current = activeTagRef.current;
 
-      // toggle off
       if (current === raw) {
         resetFocus();
         resetStarPositions();
@@ -250,8 +227,6 @@ export default function SkyNetwork({
         scheduleRedraw();
         return;
       }
-
-      // switch keyword: reset all then focus
       resetFocus();
       resetStarPositions();
       scheduleRedraw();
@@ -266,7 +241,6 @@ export default function SkyNetwork({
       star.addEventListener("click", onStarClick(star));
     });
 
-    // background click → clear
     const onSkyClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
       if (target?.closest?.("button")) return;
@@ -278,12 +252,6 @@ export default function SkyNetwork({
       scheduleRedraw();
     };
     sky.addEventListener("click", onSkyClick);
-
-    /* -------------------------
-       Drag (pointer events)
-       - drag end 시 위치를 initialPosRef에 저장
-       - drag 직후 click 방지 (threshold)
-    -------------------------- */
     let isDragging = false;
     let dragStar: HTMLButtonElement | null = null;
     let dragOffsetX = 0;
@@ -322,18 +290,12 @@ export default function SkyNetwork({
         const left = parseFloat(dragStar.style.left || "0");
         const top = parseFloat(dragStar.style.top || "0");
         if (id && Number.isFinite(left) && Number.isFinite(top)) {
-          // ✅ 드래그한 위치가 이제 "기본 위치"
           initialPosRef.current[id] = { left, top };
         }
 
-        // pointer capture 해제
         try {
           dragStar.releasePointerCapture(e.pointerId);
-        } catch {
-          // ignore
-        }
-
-        // drag 직후 click 막기: moved였으면 잠깐 유지했다가 해제
+        } catch {}
         if (moved) {
           (dragStar as any)._dragging = true;
           window.setTimeout(() => {
@@ -367,8 +329,6 @@ export default function SkyNetwork({
         e.preventDefault();
         e.stopPropagation();
       });
-
-      // 캡처 단계 click 차단
       star.addEventListener(
         "click",
         (e) => {
@@ -400,9 +360,6 @@ export default function SkyNetwork({
     };
   }, [nodes, edgesRaw, onSelectTag]);
 
-  /* -------------------------
-     Sync active state
-  -------------------------- */
   useEffect(() => {
     const stars = starsRef.current;
     stars.forEach((s) =>

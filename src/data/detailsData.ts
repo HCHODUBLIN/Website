@@ -1,7 +1,6 @@
 import DivAirCityLogo from "../assets/DivAirCitylogo.png";
 import CULTIVATELogo from "../assets/CULTIVATElogo.png";
 
-
 export type KeywordMeta = {
   label: string;
   description: string;
@@ -31,10 +30,6 @@ export const KEYWORDS = {
 } as const satisfies Record<string, KeywordMeta>;
 
 export type KeywordTag = keyof typeof KEYWORDS;
-
-/* ----------------------------------
- * Domain concepts: links & period
- * ---------------------------------- */
 
 export type LinkSet = {
   website?: string; // project / landing page
@@ -340,10 +335,6 @@ export const DETAILS_DATA: DetailsData = {
     },
   ],
 };
-
-/* ----------------------------------
- * Derived exports
- * ---------------------------------- */
 
 export const DETAILS_ITEMS: Item[] = [
   ...DETAILS_DATA.projects,

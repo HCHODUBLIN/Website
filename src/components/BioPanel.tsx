@@ -11,7 +11,6 @@ export default function BioPanel() {
           bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.06),transparent)]
         "
       >
-        {/* Avatar */}
         <div
           className="
             mb-4

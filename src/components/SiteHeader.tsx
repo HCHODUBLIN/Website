@@ -1,4 +1,3 @@
-// src/components/SiteHeader.tsx
 type NavItem = { label: string; href: string };
 
 function IconButton({
@@ -48,7 +47,6 @@ export default function SiteHeader({
         bg-black
       "
     >
-      {/* Brand */}
       <a href="#home" className="flex items-center gap-2">
         <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/40 text-[0.8rem] font-semibold">
           H
@@ -58,7 +56,6 @@ export default function SiteHeader({
         </span>
       </a>
 
-      {/* Main nav */}
       <nav className="flex flex-1 items-center justify-center max-md:hidden">
         {nav.map((item) => (
           <a
@@ -80,9 +77,7 @@ export default function SiteHeader({
         ))}
       </nav>
 
-      {/* Actions */}
       <div className="flex items-center gap-2">
-        {/* LinkedIn */}
         <IconButton
           href="https://www.linkedin.com/in/hyunjic/"
           label="LinkedIn profile"
@@ -92,14 +87,12 @@ export default function SiteHeader({
           </svg>
         </IconButton>
 
-        {/* GitHub */}
         <IconButton href="https://github.com/HCHODUBLIN" label="GitHub profile">
           <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
             <path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.11 3.29 9.44 7.86 10.97.57.1.78-.25.78-.55v-2.1c-3.2.7-3.88-1.55-3.88-1.55-.52-1.33-1.27-1.68-1.27-1.68-1.04-.72.08-.71.08-.71 1.15.08 1.76 1.19 1.76 1.19 1.02 1.76 2.68 1.25 3.33.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.45.11-3.02 0 0 .97-.31 3.18 1.18a11.1 11.1 0 012.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.57.24 2.73.12 3.02.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.4-5.25 5.68.41.35.77 1.04.77 2.1v3.11c0 .31.2.66.79.55A11.52 11.52 0 0023.5 12C23.5 5.74 18.27.5 12 .5z" />
           </svg>
         </IconButton>
 
-        {/* Email */}
         <IconButton href="mailto:hyunji.cho.uk@gmail.com" label="Email">
           <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
             <path d="M2 4h20v16H2V4zm10 7L4 6v12h16V6l-8 5z" />

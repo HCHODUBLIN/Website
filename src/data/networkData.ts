@@ -1,5 +1,3 @@
-// src/data/networkData.ts
-
 export type NetworkNode = {
   id: string;
   label: string;
@@ -24,16 +22,11 @@ export const NETWORK_DATA: NetworkData = {
   ],
 
   edges: [
-    // Governance / Inclusion / Transition triangle
     { from: "governance", to: "transition" },
     { from: "governance", to: "impact-measurement" },
     { from: "governance", to: "data-ai" },
-
-    // Data & AI axis
     { from: "data-ai", to: "impact-measurement" },
     { from: "data-ai", to: "transition" },
-
-    // Transition & Impact Measurement
     { from: "transition", to: "impact-measurement" },
   ],
 };
