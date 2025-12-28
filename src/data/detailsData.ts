@@ -1,6 +1,3 @@
-import DivAirCityLogo from "../assets/DivAirCitylogo.png";
-import CULTIVATELogo from "../assets/CULTIVATElogo.png";
-
 export type KeywordMeta = {
   label: string;
   description: string;
@@ -32,21 +29,17 @@ export const KEYWORDS = {
 export type KeywordTag = keyof typeof KEYWORDS;
 
 export type LinkSet = {
-  website?: string; // project / landing page
-  doi?: string; // raw DOI, e.g. "10.1016/..."
-  pdf?: string; // direct document link
+  website?: string; 
+  doi?: string; 
+  pdf?: string; 
   github?: string;
-  logo?: string; // image URL (Vite import is a string URL)
+  logo?: string; 
 };
 
 export type Period =
   | { type: "year"; value: number }
   | { type: "range"; from: number; to: number }
   | { type: "ongoing"; from: number };
-
-/* ----------------------------------
- * Items (discriminated union)
- * ---------------------------------- */
 
 export type BaseItem = {
   id: string;
@@ -105,7 +98,6 @@ export const DETAILS_DATA: DetailsData = {
       ],
             links: {
         website: "https://cultivate-project.eu/",
-        logo: CULTIVATELogo,
     },
         },
     {
@@ -123,7 +115,6 @@ export const DETAILS_DATA: DetailsData = {
       ],
       links: {
         website: "https://divaircity.eu/",
-        logo: DivAirCityLogo,
       },
       period: { type: "range", from: 2020, to: 2024 },
     },

@@ -12,7 +12,6 @@ export default function App() {
   const [activeTag, setActiveTag] = useState<KeywordTag | null>(null);
   const [overlay, setOverlay] = useState<OverlayKey | null>(null);
 
-  // hash로 오버레이 열기
   useEffect(() => {
     const applyFromHash = () => {
       const hash = (window.location.hash || "").replace("#", "");
@@ -25,7 +24,6 @@ export default function App() {
     return () => window.removeEventListener("hashchange", applyFromHash);
   }, []);
 
-  // ESC로 닫기 + body 스크롤 잠금
   useEffect(() => {
     document.body.style.overflow = overlay ? "hidden" : "";
 

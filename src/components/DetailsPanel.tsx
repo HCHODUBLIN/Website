@@ -1,5 +1,5 @@
 // src/components/DetailsPanel.tsx
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { KEYWORDS, type KeywordTag } from "../data/detailsData";
 
 const PHILOSOPHY: Record<KeywordTag, { blurb: string }> = {
@@ -21,7 +21,6 @@ const PHILOSOPHY: Record<KeywordTag, { blurb: string }> = {
   },
 };
 
-// 작은 라인 아이콘(SVG) — 사진 대신 ‘텍스트 덩어리’ 느낌을 줄여줌
 function KeywordIcon({ tag }: { tag: KeywordTag }) {
   const common = "h-4 w-4 opacity-80";
   switch (tag) {
@@ -108,17 +107,11 @@ function KeywordIcon({ tag }: { tag: KeywordTag }) {
   }
 }
 
-function clampStyle(expanded: boolean) {
-  return expanded ? "" : "line-clamp-2"; // tailwind line-clamp 플러그인 없으면 아래 CSS로 대체 가능
-}
-
 export default function DetailsPanel({
   activeTag,
 }: {
   activeTag: KeywordTag | null;
 }) {
-  const [expanded, setExpanded] = useState(false);
-
   const meta = useMemo(() => {
     if (!activeTag) return null;
     return KEYWORDS[activeTag];
@@ -145,28 +138,17 @@ export default function DetailsPanel({
         <div className="mt-[2px]">
           <KeywordIcon tag={activeTag} />
         </div>
+
         <div className="min-w-0">
           <h3 className="text-[0.95rem] uppercase tracking-[0.09em] opacity-90">
             {meta.label}
           </h3>
 
-          <p
-            className={`mt-2 text-[0.9rem] leading-relaxed opacity-80 ${clampStyle(
-              expanded
-            )}`}
-          >
+          <p className="mt-2 text-[0.9rem] leading-relaxed opacity-80">
             {text}
           </p>
 
           <div className="mt-3 flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => setExpanded((v) => !v)}
-              className="text-[0.82rem] underline opacity-70 hover:opacity-100"
-            >
-              {expanded ? "Show less" : "Read more"}
-            </button>
-
             <a
               href="#projects-publications"
               className="text-[0.82rem] underline opacity-70 hover:opacity-100"

@@ -31,7 +31,42 @@ function IconButton({
     </a>
   );
 }
-
+function TextButton({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target={href.startsWith("http") ? "_blank" : undefined}
+      rel={href.startsWith("http") ? "noreferrer" : undefined}
+      aria-label={label}
+      className="
+        inline-flex h-8 items-center justify-center
+        rounded-full
+        border border-white/50
+        px-3
+        text-[0.75rem]
+        font-medium
+        uppercase
+        tracking-[0.08em]
+        text-neutral-100
+        transition-[background-color,color,transform]
+        duration-200
+        hover:bg-neutral-100
+        hover:text-black
+        hover:-translate-y-[1px]
+      "
+    >
+      {children}
+    </a>
+  );
+}
 export default function SiteHeader({
   nav = [{ label: "Projects & Publications", href: "#projects-publications" }],
 }: {
@@ -78,6 +113,9 @@ export default function SiteHeader({
       </nav>
 
       <div className="flex items-center gap-2">
+        <TextButton href="/HC_CV.pdf" label="Curriculum Vitae (PDF)">
+          CV
+        </TextButton>
         <IconButton
           href="https://www.linkedin.com/in/hyunjic/"
           label="LinkedIn profile"
