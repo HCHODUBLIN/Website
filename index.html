@@ -1,99 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <title>Hyunji Cho</title>
-    <link rel="stylesheet" href="css/style.css" />
-</head>
-
-<body>
-    <!-- 상단 헤더 -->
-    <header class="site-header">
-
-        <!-- 브랜드 → 클릭 시 홈으로 이동 -->
-        <a class="brand" href="index.html">
-            <div class="brand-mark">H</div>
-            <div class="brand-text">Hyunji Cho</div>
-        </a>
-
-        <nav class="main-nav">
-            <a class="nav-link" href="#about">About</a>
-            <a class="nav-link" href="#projects">Projects</a>
-            <a class="nav-link" href="#publications">Publications</a>
-        </nav>
-
-        <!-- 오른쪽 버튼 -->
-        <div class="header-actions">
-            <a class="icon-button" href="cv.pdf">CV</a>
-            <a class="icon-button" href="https://www.linkedin.com/in/hyunjic/" target="_blank"
-                rel="noopener noreferrer">
-                LinkedIn
-            </a>
-        </div>
-
-    </header>
-
-    <!-- 메인 3컬럼 레이아웃 -->
-    <main class="landing" id="home">
-        <section class="bio-panel">
-            <div class="bio-card">
-                <div class="bio-avatar"></div>
-
-                <div class="bio-text">
-                    <h1 class="bio-name">Hyunji Cho</h1>
-
-                    <p class="bio-title">
-                        Sustainability & Urban Data Analytics Expert
-                    </p>
-
-                    <p class="bio-summary">
-                        I build data-driven sustainability systems that integrate impact measurement,
-                        AI/ML workflows and governance insights.
-                    </p>
-
-                    <p class="bio-summary">
-                        Explore the constellation on the right to navigate my work across
-                        sustainable transitions, governance, data & AI, and impact measurement.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- 가운데: 네트워크 별자리 패널 -->
-        <section class="sky-panel">
-            <div class="sky">
-                <!-- 여기 안은 JS가 별 / 선(SVG)을 전부 채움 -->
-            </div>
-        </section>
-
-        <!-- 오른쪽: 키워드 설명 + 아이템 리스트 -->
-        <section class="details" id="details-panel">
-            <div class="detail-header">
-                <h2 id="detail-title">Select a keyword</h2>
-                <p id="detail-description">
-                    Click a keyword in the constellation to explore related work.
-                </p>
-            </div>
-
-            <section id="projects-section" class="details-section">
-                <h3 class="details-section-title">Projects</h3>
-                <ul id="projects-list" class="details-list"></ul>
-            </section>
-
-            <section id="publications-section" class="details-section">
-                <h3 class="details-section-title">Publications</h3>
-                <ul id="publications-list" class="details-list"></ul>
-            </section>
-        </section>
-    </main>
-
-    <!-- 네트워크 데이터 → 메인 스크립트 순서 중요 -->
-    <script src="js/network-data.js"></script>
-    <script src="js/details-data.js"></script>
-    <script src="js/main.js"></script>
-
-</body>
-
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vite-project</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

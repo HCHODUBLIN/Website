@@ -1,0 +1,243 @@
+import type { Item, KeywordTag, LinkSet, Period } from "./detailsData";
+
+/* ----------------------------------
+ * Kinds
+ * ---------------------------------- */
+
+export type Kind = "Project" | "Publication";
+
+export function isProject(item: Item): item is Extract<Item, { achievements?: string[] }> {
+  return "achievements" in item;
+}
+
+export function getKind(item: Item): Kind {
+  return isProject(item) ? "Project" : "Publication";
+}
+
+/* ----------------------------------
+ * Links
+ * ---------------------------------- */
+
+export type RightAction =
+  | { kind: "doi" | "pdf"; href: string }
+  | { kind: "website"; href: string }
+  | { kind: "logo"; src: string; alt: string };
+
+function isHttpUrl(s: string) {
+  return /^https?:\/\//i.test(s);
+}
+
+export function toDoiHref(raw?: string): string | null {
+  const s = String(raw ?? "").trim();
+  if (!s) return null;
+  return isHttpUrl(s) ? s : `https://doi.org/${s}`;
+}
+
+/**
+ * "대표 외부 링크 1개"가 필요할 때 쓰는 함수.
+ * (프로젝트: website 우선 / 퍼블리케이션: doi 우선 등)
+ */
+export function resolveExternalHref(links?: LinkSet): string | null {
+  if (!links) return null;
+
+  if (links.website) return links.website;
+  if (links.doi) return toDoiHref(links.doi) ?? null;
+  if (links.pdf) return links.pdf;
+  if (links.github) return links.github;
+
+  return null;
+}
+
+/**
+ * 카드 오른쪽 액션(여러 개)을 만들 때 쓰는 함수.
+ * - Project: logo + website
+ * - Publication: doi + pdf
+ */
+export function getRightActions(item: Item): RightAction[] {
+  const out: RightAction[] = [];
+
+  if (isProject(item)) {
+    const logo = String(item.links?.logo ?? "").trim();
+    const website = String(item.links?.website ?? "").trim();
+
+    if (logo) out.push({ kind: "logo", src: logo, alt: `${item.title} logo` });
+    if (website) out.push({ kind: "website", href: website });
+
+    return out;
+  }
+
+  const doi = toDoiHref(item.links?.doi ?? undefined);
+  const pdf = String(item.links?.pdf ?? "").trim();
+
+  if (doi) out.push({ kind: "doi", href: doi });
+  if (pdf) out.push({ kind: "pdf", href: pdf });
+
+  return out;
+}
+
+/* ----------------------------------
+ * Period
+ * ---------------------------------- */
+
+export function formatPeriod(period?: Period): string | null {
+  if (!period) return null;
+
+  switch (period.type) {
+    case "year":
+      return String(period.value);
+
+    case "range":
+      return `${period.from}–${period.to}`;
+
+    case "ongoing":
+      // 네가 원하면 `${period.from}–present`로 바꿔도 됨
+      return `${period.from}–`;
+
+    default:
+      return null;
+  }
+}
+
+/**
+ * 정렬용 "대표 연도"를 뽑는다.
+ * - year: value
+ * - range: to
+ * - ongoing: 현재 연도 취급
+ */
+export function getSortYear(item: Item, nowYear = new Date().getFullYear()): number {
+  const p = item.period;
+  if (!p) return -1;
+
+  if (p.type === "year") return p.value;
+  if (p.type === "range") return p.to;
+  return nowYear;
+}
+
+/**
+ * Publication 메타(현재는 period만).
+ * 필요하면 " · publisher" 같은 것도 여기서 붙이면 됨.
+ */
+export function formatPublicationMeta(item: Item): string | null {
+  if (isProject(item)) return null;
+  return formatPeriod(item.period);
+}
+
+/* ----------------------------------
+ * Chips (filters)
+ * ---------------------------------- */
+
+export type ChipKey =
+  | `tag:${KeywordTag}`
+  | `badge:${string}`
+  | `kind:${Kind}`;
+
+export function getChips(item: Item): ChipKey[] {
+  const chips: ChipKey[] = [];
+  chips.push(`kind:${getKind(item)}`);
+
+  for (const t of item.tags ?? []) {
+    chips.push(`tag:${t}` as ChipKey);
+  }
+
+  for (const b of item.badges ?? []) {
+    const bb = String(b ?? "").trim();
+    if (bb) chips.push(`badge:${bb}` as ChipKey);
+  }
+
+  return chips;
+}
+
+export function chipLabel(key: ChipKey, keywords: Record<string, { label: string }>) {
+  const [k, ...rest] = key.split(":");
+  const v = rest.join(":");
+
+  if (k === "tag") {
+    return keywords[v]?.label ?? v;
+  }
+  return v;
+}
+
+export function chipTone(key: ChipKey) {
+  if (key.startsWith("kind:")) {
+    return "border border-white/40 bg-white/20 text-white/85";
+  }
+  if (key.startsWith("tag:")) {
+    return "border border-white/25 bg-transparent text-white/85";
+  }
+  return "border border-transparent bg-transparent text-white/80";
+}
+
+export function sortChips(chips: ChipKey[], keywords: Record<string, { label: string }>) {
+  const rank = (x: ChipKey) => (x.startsWith("kind:") ? 0 : x.startsWith("tag:") ? 1 : 2);
+
+  return [...chips].sort((a, b) => {
+    const ra = rank(a);
+    const rb = rank(b);
+    if (ra !== rb) return ra - rb;
+    return chipLabel(a, keywords).localeCompare(chipLabel(b, keywords));
+  });
+}
+
+/* ----------------------------------
+ * Item sorting
+ * ---------------------------------- */
+
+export function sortItems(a: Item, b: Item) {
+  const ka = getKind(a);
+  const kb = getKind(b);
+  if (ka !== kb) return ka === "Project" ? -1 : 1;
+
+  if (ka === "Publication") {
+    const ya = getSortYear(a);
+    const yb = getSortYear(b);
+    if (ya !== yb) return yb - ya;
+  }
+
+  return 0;
+}
+
+/* ----------------------------------
+ * Filtering
+ * ---------------------------------- */
+
+export function filterItems(items: Item[], selected: ChipKey[]) {
+  if (!selected.length) return items;
+  const selectedSet = new Set(selected);
+
+  return items.filter((it) => {
+    const chips = getChips(it);
+    return chips.some((c) => selectedSet.has(c));
+  });
+}
+
+/* ----------------------------------
+ * sessionStorage (chip selection)
+ * ---------------------------------- */
+
+export function readStoredChips(storageKey: string): ChipKey[] {
+  try {
+    const raw = sessionStorage.getItem(storageKey);
+    if (!raw) return [];
+    const arr = JSON.parse(raw);
+    if (!Array.isArray(arr)) return [];
+    return arr.filter((x) => typeof x === "string") as ChipKey[];
+  } catch {
+    return [];
+  }
+}
+
+export function writeStoredChips(storageKey: string, keys: ChipKey[]) {
+  try {
+    sessionStorage.setItem(storageKey, JSON.stringify(keys));
+  } catch {
+    // ignore
+  }
+}
+
+export function clearStoredChips(storageKey: string) {
+  try {
+    sessionStorage.removeItem(storageKey);
+  } catch {
+    // ignore
+  }
+}
