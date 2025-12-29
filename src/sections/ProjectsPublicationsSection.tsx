@@ -209,7 +209,13 @@ export default function ProjectsPublicationsSection({
   };
 
   useEffect(() => {
-    if (!defaultTag) return;
+    // also clear persisted filters so the list resets next time.
+    if (!defaultTag) {
+      clearStoredChips(STORAGE_KEY);
+      setSelected(new Set());
+      return;
+    }
+
     const tagKey = `tag:${defaultTag}` as ChipKey;
 
     setSelected((prev) => {

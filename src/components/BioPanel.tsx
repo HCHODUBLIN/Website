@@ -23,7 +23,7 @@ export default function BioPanel() {
           <img
             src={profileImg}
             alt="Hyunji Cho"
-            className="h-full w-full object-cover scale-110 object-top brightness-[0.80] contrast-[0.95]"
+            className="h-full w-full object-cover scale-110 object-top brightness-[0.90] contrast-[0.95]"
           />
         </div>
 

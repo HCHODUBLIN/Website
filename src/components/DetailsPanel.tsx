@@ -1,4 +1,3 @@
-// src/components/DetailsPanel.tsx
 import { useMemo } from "react";
 import { KEYWORDS, type KeywordTag } from "../data/detailsData";
 
