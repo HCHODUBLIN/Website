@@ -35,16 +35,21 @@ function TextButton({
   href,
   label,
   children,
+  newTab = false,
 }: {
   href: string;
   label: string;
   children: React.ReactNode;
+  newTab?: boolean;
 }) {
+  const isExternal = href.startsWith("http");
+  const shouldOpenNewTab = newTab || isExternal;
+
   return (
     <a
       href={href}
-      target={href.startsWith("http") ? "_blank" : undefined}
-      rel={href.startsWith("http") ? "noreferrer" : undefined}
+      target={shouldOpenNewTab ? "_blank" : undefined}
+      rel={shouldOpenNewTab ? "noreferrer" : undefined}
       aria-label={label}
       className="
         inline-flex h-8 items-center justify-center
@@ -67,6 +72,7 @@ function TextButton({
     </a>
   );
 }
+
 export default function SiteHeader({
   nav = [{ label: "Projects & Publications", href: "#projects-publications" }],
 }: {
@@ -116,6 +122,7 @@ export default function SiteHeader({
         <TextButton
           href={`${import.meta.env.BASE_URL}HC_CV.pdf`}
           label="Curriculum Vitae (PDF)"
+          newTab
         >
           CV
         </TextButton>
