@@ -24,6 +24,10 @@ import {
 
 const STORAGE_KEY = "pp_selected_chips_v1";
 
+function isFilterChip(c: ChipKey) {
+  return c.startsWith("tag:") || c.startsWith("kind:");
+}
+
 function IconLink() {
   return (
     <svg
@@ -209,7 +213,6 @@ export default function ProjectsPublicationsSection({
   };
 
   useEffect(() => {
-    // also clear persisted filters so the list resets next time.
     if (!defaultTag) {
       clearStoredChips(STORAGE_KEY);
       setSelected(new Set());
@@ -233,8 +236,11 @@ export default function ProjectsPublicationsSection({
 
   const { allChips, sortedItems } = useMemo(() => {
     const chipSet = new Set<ChipKey>();
+
     for (const it of DETAILS_ITEMS) {
-      for (const c of getChips(it)) chipSet.add(c);
+      for (const c of getChips(it)) {
+        if (isFilterChip(c)) chipSet.add(c);
+      }
     }
 
     return {
@@ -278,11 +284,19 @@ export default function ProjectsPublicationsSection({
         <aside
           className={
             embedded
-              ? "h-full rounded-2xl border border-white/10 bg-black/30 p-4"
+              ? `
+        sticky top-6
+        h-[calc(100vh-3rem)]
+        self-start
+        rounded-2xl
+        border border-white/10
+        bg-black/30
+        p-4
+      `
               : ""
           }
         >
-          <div className={embedded ? "sticky top-0 bg-transparent" : ""}>
+          <div className={embedded ? "bg-transparent" : ""}>
             <div className="flex items-start justify-between gap-3">
               <h3 className="text-[0.9rem] uppercase tracking-[0.1em] opacity-90">
                 Filters

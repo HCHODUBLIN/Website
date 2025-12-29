@@ -84,7 +84,7 @@ export const DETAILS_DATA: DetailsData = {
       kind: "project",
       id: "proj-cultivate",
       title: "CULTIVATE: The food sharing compass platform",
-      tags: ["impact-measurement", "data-ai", "transition"],
+      tags: ["data-ai", "transition", "governance"],
       period: { type: "range", from: 2023, to: 2026 },
       funder: "EU Horizon 2020",
       summary:
@@ -107,7 +107,7 @@ export const DETAILS_DATA: DetailsData = {
       id: "proj-divaircity",
       title:
         "DivAirCity: The power of Diversity & Inclusion for climate neutral cities",
-      tags: ["data-ai", "impact-measurement", "transition", "governance"],
+      tags: ["impact-measurement", "transition", "governance"],
       funder: "EU Horizon 2020",
       period: { type: "range", from: 2021, to: 2024 },
       summary:
@@ -142,7 +142,7 @@ export const DETAILS_DATA: DetailsData = {
       kind: "project",
       id: "proj-uk2070",
       title: "UK 2070: Civil society, inequality and place-based disadvantage",
-      tags: ["governance", "transition"],
+      tags: ["governance"],
       funder: "Lincoln Institute of Land Policy / UK 2070 Commission",
       period: { type: "range", from: 2019, to: 2022 },
       summary:
@@ -157,7 +157,7 @@ export const DETAILS_DATA: DetailsData = {
       kind: "project",
       id: "proj-phd",
       title: "PhD research – Planning & participation",
-      tags: ["governance", "transition"],
+      tags: ["governance"],
       summary:
         "Doctoral research on recognition, planning practices and community participation in a diverse Seoul neighbourhood.",
       achievements: [
@@ -186,7 +186,7 @@ export const DETAILS_DATA: DetailsData = {
       period: { type: "year", value: 2025 },
       links: { doi: "10.1016/j.geoforum.2025.104318" },
       tags: ["transition", "governance"],
-      badges: ["Peer-reviewed", "Journal paper"],
+      badges: ["Journal paper"],
       summary:
         "Traces how food sharing initiatives evolve over time and what these trajectories imply for just urban food transitions.",
     },
@@ -203,7 +203,7 @@ export const DETAILS_DATA: DetailsData = {
       pages: "1–19",
       links: { doi: "10.3351/ppp.2025.6842985999" },
       tags: ["transition", "governance"],
-      badges: ["Peer-reviewed", "Journal paper"],
+      badges: ["Journal paper"],
       summary:
         "Uses assemblage thinking to explain how food sharing initiatives interrelate and shape local care infrastructures.",
     },
@@ -218,7 +218,7 @@ export const DETAILS_DATA: DetailsData = {
       pages: "1–15",
       links: { doi: "10.1080/10225706.2022.2038221" },
       tags: ["governance"],
-      badges: ["Peer-reviewed", "Journal paper"],
+      badges: ["Journal paper"],
       summary:
         "Revisits social capital through inner- and inter-group dynamics in participatory planning processes in Seoul.",
     },
@@ -232,7 +232,7 @@ export const DETAILS_DATA: DetailsData = {
       pages: "1–18",
       links: { doi: "10.1080/26884674.2022.2051778" },
       tags: ["governance"],
-      badges: ["Peer-reviewed", "Journal paper"],
+      badges: ["Journal paper"],
       summary:
         "Examines how diversity is imagined and governed through gendered and immigrant identities in Seoul.",
     },
@@ -249,7 +249,7 @@ export const DETAILS_DATA: DetailsData = {
       pages: "2863–2879",
       links: { doi: "10.1177/0042098020970450" },
       tags: ["governance"],
-      badges: ["Peer-reviewed", "Journal paper"],
+      badges: ["Journal paper"],
       summary:
         "Develops a recognition perspective on planning practices and minority experiences in a diverse neighbourhood in Seoul.",
     },
@@ -265,7 +265,7 @@ export const DETAILS_DATA: DetailsData = {
       month: "October",
       links: { doi: "10.1145/3627673.3680090" },
       tags: ["data-ai"],
-      badges: ["Peer-reviewed", "Conference paper"],
+      badges: ["Conference paper"],
       summary:
         "Introduces an LLM-driven pipeline for retrieving and classifying food sharing initiatives from web data.",
     },
@@ -287,8 +287,8 @@ export const DETAILS_DATA: DetailsData = {
       links: {
         pdf: "https://divaircity.eu/wp-content/uploads/2024/01/DivAirCity_KPIs-and-monitoring-metrics-for-DivAirCity-specifications-1.pdf",
       },
-      tags: ["impact-measurement", "data-ai", "governance", "transition"],
-      badges: ["Technical deliverable"],
+      tags: ["impact-measurement"],
+      badges: ["Report"],
       summary:
         "Defines key performance indicators and monitoring metrics for cross-city evaluation of environmental, social, and health impacts.",
     },
@@ -302,8 +302,8 @@ export const DETAILS_DATA: DetailsData = {
       links: {
         pdf: "https://divaircity.eu/wp-content/uploads/2024/01/DivAirCity_Digital-Innovation-and-DI-Data-Management-Framework.pdf",
       },
-      tags: ["data-ai", "impact-measurement", "governance", "transition"],
-      badges: ["Technical deliverable"],
+      tags: ["impact-measurement"],
+      badges: ["Report"],
       summary:
         "Sets out a data management framework for digital innovation and diversity & inclusion, including pipelines, governance, interoperability, and GDPR-aligned practices.",
     },
@@ -327,8 +327,8 @@ export const DETAILS_DATA: DetailsData = {
       links: {
         pdf: "https://divaircity.eu/wp-content/uploads/2024/01/DivAirCity_pilot-cities-data-sources-and-their-acquisition-framework-1.pdf",
       },
-      tags: ["data-ai", "governance", "impact-measurement", "transition"],
-      badges: ["Technical deliverable"],
+      tags: ["impact-measurement"],
+      badges: ["Report"],
       summary:
         "Documents pilot-city data sources and provides a framework for data acquisition, harmonisation, and governance across cities.",
     },
@@ -348,7 +348,7 @@ export const DETAILS_DATA: DetailsData = {
       period: { type: "year", value: 2024 },
       links: { doi: "10.5281/zenodo.11030355" },
       tags: ["transition", "governance"],
-      badges: ["Policy brief"],
+      badges: ["Report"],
       summary:
         "Policy-oriented briefing note analysing food sharing landscapes across hub city locations, with implications for urban food governance.",
     },
@@ -361,7 +361,7 @@ export const DETAILS_DATA: DetailsData = {
       publisher: "Sheffield University",
       period: { type: "year", value: 2020 },
       tags: ["governance"],
-      badges: ["Working paper", "Call for Evidence"],
+      badges: ["Report"],
       links: {
         pdf: "https://uk2070.org.uk/wp-content/uploads/2020/02/UK2070-Civil-Society-Perspectives-UCL-2020.pdf",
       },
@@ -376,7 +376,7 @@ export const DETAILS_DATA: DetailsData = {
       publisher: "University College London",
       period: { type: "year", value: 2020 },
       tags: ["governance"],
-      badges: ["Working paper"],
+      badges: ["Report"],
       summary:
         "Investigates awarding gaps affecting BAME students and implications for higher education policy.",
     },
@@ -388,7 +388,7 @@ export const DETAILS_DATA: DetailsData = {
       publisher: "UK 2070 Commission Working Paper Series",
       period: { type: "year", value: 2021 },
       tags: ["governance"],
-      badges: ["Working paper", "Call for Evidence"],
+      badges: ["Report"],
       summary:
         "Analyses how civil society organisations experienced and responded to inequalities during the COVID-19 period.",
     },
@@ -402,8 +402,8 @@ export const DETAILS_DATA: DetailsData = {
       links: {
         pdf: "https://www.lincolninst.edu/publications/working-papers/place-profiles-localizing-understandings-disadvantage/",
       },
-      tags: ["governance", "transition"],
-      badges: ["Commissioned report"],
+      tags: ["governance"],
+      badges: ["Report"],
       summary:
         "Develops place-based analytical profiles to support evidence-led regional policy and investment decisions.",
     },
@@ -423,8 +423,8 @@ export const DETAILS_DATA: DetailsData = {
       links: {
         pdf: "https://discovery.ucl.ac.uk/id/eprint/10175784/1/ucl_2022_food_security_findings.pdf",
       },
-      tags: ["governance", "transition"],
-      badges: ["Commissioned report"],
+      tags: ["governance"],
+      badges: ["Report"],
       summary:
         "Commissioned report examining the role of civil society organisations in addressing food insecurity at the local level.",
     },
@@ -439,7 +439,7 @@ export const DETAILS_DATA: DetailsData = {
         pdf: "https://www.elgaronline.com/edcollchap/book/9781802201116/book-part-9781802201116-17.xml",
       },
       pages: "125–139",
-      tags: ["transition", "governance"],
+      tags: ["governance"],
       badges: ["Book chapter"],
       summary:
         "Book chapter in Pandemic Recovery? Reframing and Rescaling Societal Challenges (eds. L. Andres, J. R. Bryson, A. Ersoy, L. Reardon). Examines the role of NGOs in reconstructing urban food resilience during and after the COVID-19 pandemic.",
@@ -459,7 +459,7 @@ export const DETAILS_DATA: DetailsData = {
       ],
       publisher: "CULTIVATE (EU Horizon 2020)",
       period: { type: "year", value: 2024 },
-      tags: ["data-ai", "impact-measurement", "governance"],
+      tags: ["data-ai"],
       summary:
         "EU Horizon project deliverable documenting the design and implementation of the SHARECITY200 database prototype, including data structures, governance considerations, and practical guidance for mapping and monitoring food sharing initiatives.",
     },
@@ -478,7 +478,7 @@ export const DETAILS_DATA: DetailsData = {
       publisher: "CULTIVATE",
       period: { type: "year", value: 2024 },
       tags: ["transition", "governance", "impact-measurement"],
-      badges: ["Policy brief"],
+      badges: ["Report"],
       summary:
         "Policy-facing summary report synthesising evidence from 105 food sharing initiative landscapes, translating large-scale mapping outputs into insights to support urban food governance and sustainability decision-making.",
     },
@@ -504,8 +504,8 @@ export const DETAILS_DATA: DetailsData = {
       volume: "6",
       pages: "916384",
       links: { doi: "10.3389/fsufs.2022.916384" },
-      tags: ["governance", "transition"],
-      badges: ["Peer-reviewed", "Journal paper"],
+      tags: ["governance"],
+      badges: ["Journal paper"],
       summary:
         "Discusses how institutions can better support participatory action research (PAR) in the post-COVID context.",
     },
@@ -534,8 +534,8 @@ export const DETAILS_DATA: DetailsData = {
       period: { type: "year", value: 2022 },
       pages: "762065",
       links: { doi: "10.3389/fsufs.2022.762065" },
-      tags: ["governance", "transition"],
-      badges: ["Peer-reviewed", "Journal paper"],
+      tags: ["governance"],
+      badges: ["Journal paper"],
       summary:
         "Examines how COVID-19 reshaped participatory action research practice and the positionality of researchers.",
     },
@@ -555,8 +555,8 @@ export const DETAILS_DATA: DetailsData = {
       ],
       publisher: "ACM WSDM 2026 Proceedings",
       period: { type: "year", value: 2026 },
-      tags: ["data-ai", "impact-measurement", "governance"],
-      badges: ["Peer-reviewed", "Conference paper"],
+      tags: ["data-ai"],
+      badges: ["Conference paper"],
       summary:
         "Presents the design and implementation of the SHARECITY200 database and an interactive visual engagement system that supports exploration, governance analysis, and impact-oriented use of large-scale food sharing initiative data within the CULTIVATE project.",
     },
