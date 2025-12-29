@@ -1,9 +1,13 @@
-import type { Item, KeywordTag, LinkSet, Period } from "./detailsData";
+import type { Item, KeywordTag, LinkSet, Period, Project, Publication } from "./detailsData";
 
 export type Kind = "Project" | "Publication";
 
-export function isProject(item: Item): item is Extract<Item, { achievements?: string[] }> {
-  return "achievements" in item;
+export function isProject(item: Item): item is Project {
+  return item.kind === "project";
+}
+
+export function isPublication(item: Item): item is Publication {
+  return item.kind === "publication";
 }
 
 export function getKind(item: Item): Kind {
@@ -29,7 +33,7 @@ export function resolveExternalHref(links?: LinkSet): string | null {
   if (!links) return null;
 
   if (links.website) return links.website;
-  if (links.doi) return toDoiHref(links.doi) ?? null;
+  if (links.doi) return toDoiHref(links.doi);
   if (links.pdf) return links.pdf;
   if (links.github) return links.github;
 
@@ -45,11 +49,11 @@ export function getRightActions(item: Item): RightAction[] {
 
     if (logo) out.push({ kind: "logo", src: logo, alt: `${item.title} logo` });
     if (website) out.push({ kind: "website", href: website });
-
+    
     return out;
   }
 
-  const doi = toDoiHref(item.links?.doi ?? undefined);
+  const doi = toDoiHref(item.links?.doi);
   const pdf = String(item.links?.pdf ?? "").trim();
 
   if (doi) out.push({ kind: "doi", href: doi });
@@ -64,16 +68,37 @@ export function formatPeriod(period?: Period): string | null {
   switch (period.type) {
     case "year":
       return String(period.value);
-
     case "range":
       return `${period.from}–${period.to}`;
-
     case "ongoing":
       return `${period.from}–`;
-
     default:
       return null;
   }
+}
+
+
+export function formatPublicationMeta(item: Item): string | null {
+  const year = formatPeriod(item.period);
+
+if (isProject(item)) {
+  const parts: string[] = [];
+  const year = formatPeriod(item.period);
+  if (year) parts.push(year);
+
+  const funder = String(item.funder ?? "").trim();
+  if (funder) parts.push(funder);
+
+  return parts.length ? parts.join(" · ") : null;
+}
+
+  const publisher = String(item.publisher ?? "").trim();
+
+  if (year && publisher) return `${year} · ${publisher}`;
+  if (year) return year;
+  if (publisher) return publisher;
+
+  return null;
 }
 
 export function getSortYear(item: Item, nowYear = new Date().getFullYear()): number {
@@ -85,23 +110,12 @@ export function getSortYear(item: Item, nowYear = new Date().getFullYear()): num
   return nowYear;
 }
 
-export function formatPublicationMeta(item: Item): string | null {
-  if (isProject(item)) return null;
-  return formatPeriod(item.period);
-}
-
-export type ChipKey =
-  | `tag:${KeywordTag}`
-  | `badge:${string}`
-  | `kind:${Kind}`;
+export type ChipKey = `tag:${KeywordTag}` | `badge:${string}` | `kind:${Kind}`;
 
 export function getChips(item: Item): ChipKey[] {
-  const chips: ChipKey[] = [];
-  chips.push(`kind:${getKind(item)}`);
+  const chips: ChipKey[] = [`kind:${getKind(item)}`];
 
-  for (const t of item.tags ?? []) {
-    chips.push(`tag:${t}` as ChipKey);
-  }
+  for (const t of item.tags ?? []) chips.push(`tag:${t}` as ChipKey);
 
   for (const b of item.badges ?? []) {
     const bb = String(b ?? "").trim();
@@ -115,19 +129,13 @@ export function chipLabel(key: ChipKey, keywords: Record<string, { label: string
   const [k, ...rest] = key.split(":");
   const v = rest.join(":");
 
-  if (k === "tag") {
-    return keywords[v]?.label ?? v;
-  }
+  if (k === "tag") return keywords[v]?.label ?? v;
   return v;
 }
 
 export function chipTone(key: ChipKey) {
-  if (key.startsWith("kind:")) {
-    return "border border-white/40 bg-white/20 text-white/85";
-  }
-  if (key.startsWith("tag:")) {
-    return "border border-white/25 bg-transparent text-white/85";
-  }
+  if (key.startsWith("kind:")) return "border border-white/40 bg-white/20 text-white/85";
+  if (key.startsWith("tag:")) return "border border-white/25 bg-transparent text-white/85";
   return "border border-transparent bg-transparent text-white/80";
 }
 
@@ -145,8 +153,8 @@ export function sortChips(chips: ChipKey[], keywords: Record<string, { label: st
 export function sortItems(a: Item, b: Item) {
   const ka = getKind(a);
   const kb = getKind(b);
-  if (ka !== kb) return ka === "Project" ? -1 : 1;
 
+  if (ka !== kb) return ka === "Project" ? -1 : 1;
   if (ka === "Publication") {
     const ya = getSortYear(a);
     const yb = getSortYear(b);
@@ -159,6 +167,7 @@ export function sortItems(a: Item, b: Item) {
 
 export function filterItems(items: Item[], selected: ChipKey[]) {
   if (!selected.length) return items;
+
   const selectedSet = new Set(selected);
 
   return items.filter((it) => {
@@ -171,9 +180,11 @@ export function readStoredChips(storageKey: string): ChipKey[] {
   try {
     const raw = sessionStorage.getItem(storageKey);
     if (!raw) return [];
-    const arr = JSON.parse(raw);
+
+    const arr: unknown = JSON.parse(raw);
     if (!Array.isArray(arr)) return [];
-    return arr.filter((x) => typeof x === "string") as ChipKey[];
+
+    return arr.filter((x): x is ChipKey => typeof x === "string") as ChipKey[];
   } catch {
     return [];
   }

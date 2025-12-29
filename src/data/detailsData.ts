@@ -29,11 +29,11 @@ export const KEYWORDS = {
 export type KeywordTag = keyof typeof KEYWORDS;
 
 export type LinkSet = {
-  website?: string; 
-  doi?: string; 
-  pdf?: string; 
+  website?: string;
+  doi?: string;
+  pdf?: string;
   github?: string;
-  logo?: string; 
+  logo?: string;
 };
 
 export type Period =
@@ -54,6 +54,7 @@ export type BaseItem = {
 export type Project = BaseItem & {
   kind: "project";
   achievements?: string[];
+  funder?: string;
 };
 
 export type Publication = BaseItem & {
@@ -75,10 +76,6 @@ export type DetailsData = {
   publications: Publication[];
 };
 
-/* ----------------------------------
- * Raw data (no formatting logic)
- * ---------------------------------- */
-
 export const DETAILS_DATA: DetailsData = {
   keywords: KEYWORDS,
 
@@ -86,29 +83,39 @@ export const DETAILS_DATA: DetailsData = {
     {
       kind: "project",
       id: "proj-cultivate",
-      title: "CULTIVATE – EU Horizon 2020",
+      title: "CULTIVATE: The food sharing compass platform",
       tags: ["impact-measurement", "data-ai", "transition"],
+      period: { type: "range", from: 2023, to: 2026 },
       badges: ["EU Horizon"],
+      funder: "EU Horizon 2020",
       summary:
-        "Lead for EU-wide mapping and analytics, combining web data, LLM/ML models and GIS to analyse food systems across 100+ cities.",
+        "As part of Trinity College Dublin’s CULTIVATE project team, led multi-city mapping and analytics of food-sharing initiatives, translating large-scale web and GIS data into evidence to support city-level sustainability impact assessment and reporting.",
       achievements: [
-        "Improved automated classification accuracy from 32% to 74% through LLM optimisation.",
+        "Enabled city-level sustainability impact reporting by automating the mapping and analysis of food-sharing initiatives across 100+ cities, providing comparable evidence for policy, funding, and governance decisions.",
+        "Designed and implemented an automated web-mining and GIS-based pipeline for mapping food-sharing initiatives.",
+        "Scaled mapping to 100+ cities, identifying over 4,000 local food-sharing initiatives using the CULTIVATE automation methodology.",
+        "Reduced mapping timelines from ~3 months per city to a one-day automated multi-city pipeline with expert review, covering 100+ cities in 1–2 months.",
+        "Improved automated classification accuracy from 32% to 74% through iterative LLM optimisation.",
         "Reduced manual data review time by approximately 50% using Azure Data Factory and automated workflows.",
-        "Presented sustainability insights to 1,000+ policymakers, NGOs and academics to support evidence-based decisions.",
+        "Presented sustainability insights to policymakers, NGOs, and academic audiences to support evidence-based decision-making.",
       ],
-            links: {
+      links: {
         website: "https://cultivate-project.eu/",
+      },
     },
-        },
     {
       kind: "project",
       id: "proj-divaircity",
-      title: "DivAirCity – Inclusive data framework (EU Horizon 2020)",
+      title:
+        "DivAirCity: The power of Diversity & Inclusion for climate neutral cities",
       tags: ["data-ai", "impact-measurement", "transition", "governance"],
       badges: ["EU Horizon"],
+      funder: "EU Horizon 2020",
+      period: { type: "range", from: 2021, to: 2024 },
       summary:
-        "Led the design of an inclusive data framework linking environmental, demographic and community-perceived air quality data across multiple European cities.",
+        "As part of the EcoWise team, led the design of an inclusive data framework linking environmental, demographic, and community-perceived air quality data across multiple European cities.",
       achievements: [
+        "Reviewed over 200 KPIs and consolidated them into 63 core indicators, aligned with data acquisition protocols and implemented through an automated analytics pipeline with real-time visualisation, reducing reporting time by approximately 50%.",
         "Built cloud-based ETL pipelines integrating multi-source city data under GDPR requirements.",
         "Developed inclusion-focused indicators for monitoring air quality and exposure across different population groups.",
         "Supported cross-city governance processes and decarbonisation analytics for partner municipalities.",
@@ -116,15 +123,17 @@ export const DETAILS_DATA: DetailsData = {
       links: {
         website: "https://divaircity.eu/",
       },
-      period: { type: "range", from: 2020, to: 2024 },
     },
     {
       kind: "project",
       id: "proj-shareweave",
-      title: "SHAREWEAVE – Research Ireland New Foundations (PI)",
+      title:
+        "SHAREWEAVE: Mapping governance and social impact in food sharing networks",
       tags: ["governance", "impact-measurement", "data-ai", "transition"],
+      period: { type: "year", value: 2026 },
+      funder: "Research Ireland",
       summary:
-        "Principal Investigator for a funded project with FoodCloud, co-developing a methodology to analyse the social impact of food sharing in Dublin.",
+        "Principal Investigator for a funded project with FoodCloud, developing an integrated data pipeline that links mapping, impact analysis, and ESG-aligned reporting to capture governance and network-based social impact of food-sharing initiatives.",
       achievements: [
         "Secured €12,000 competitive funding as PI under the Research Ireland New Foundations scheme.",
         "Designed a relational mapping and impact framework combining qualitative and spatial data.",
@@ -134,13 +143,18 @@ export const DETAILS_DATA: DetailsData = {
     {
       kind: "project",
       id: "proj-uk2070",
-      title: "Place Profiles: Localizing Understandings of Disadvantage",
+      title: "UK 2070: Civil society, inequality and place-based disadvantage",
       tags: ["governance", "transition"],
-      summary: "Analysed place-based inequalities.",
+      badges: ["Policy research"],
+      funder: "Lincoln Institute of Land Policy / UK 2070 Commission",
+      period: { type: "range", from: 2019, to: 2022 },
+      summary:
+        "Contributed to a programme of policy-facing research on place-based disadvantage, civil society, and food security, producing evidence used in national and local decision-making.",
       achievements: [
-        "Produced analytical profiles used in the UK 2070 Commission report and the English Devolution White Paper.",
-        "Delivered evidence syntheses and policy briefs for government-facing publications.",
-        "Combined quantitative indicators with civil-society insight to inform regional investment priorities.",
+        "Place Profiles (Feb 2021–Feb 2022) — Produced analytical profiles used in the UK 2070 Commission report and the English Devolution White Paper.",
+        "Place Profiles (Feb 2021–Feb 2022) — Presented findings at the House of Lords on the Levelling Up bill (chaired by Lord Bob Kerslake).",
+        "Food Security & Civil Society (Feb 2021–Feb 2022) — Delivered commissioned research for a London borough, including focus groups with food banks and local groups and a policy report.",
+        "Civil Society Perspectives on Inequality (Apr 2019–Feb 2021) — Facilitated focus groups across multiple UK locations and delivered working papers to the UK 2070 Commission.",
       ],
     },
     {
@@ -165,7 +179,13 @@ export const DETAILS_DATA: DetailsData = {
       id: "pub-geoforum-2025",
       title:
         "Evolving foodscapes: Tracing trajectories of urban food sharing initiatives for just urban food transitions",
-      authors: ["A. R. Davies", "H. Cho", "M. Vedoa", "R. Martinez Varderi", "A. M. Gatejel"],
+      authors: [
+        "A. R. Davies",
+        "H. Cho",
+        "M. Vedoa",
+        "R. Martinez Varderi",
+        "A. M. Gatejel",
+      ],
       publisher: "Geoforum",
       period: { type: "year", value: 2025 },
       links: { doi: "10.1016/j.geoforum.2025.104318" },
@@ -240,10 +260,10 @@ export const DETAILS_DATA: DetailsData = {
     {
       kind: "publication",
       id: "pub-cikm-2024",
-      title: "LLM-based Automated Web Retrieval and Text Classification of Food Sharing Initiatives",
+      title:
+        "LLM-based Automated Web Retrieval and Text Classification of Food Sharing Initiatives",
       authors: ["H. Wu", "H. Cho", "A. R. Davies", "G. J. F. Jones"],
-      publisher:
-        "Proceedings of the 33rd ACM International Conference on Information and Knowledge Management (CIKM)",
+      publisher: "ACM CIKM",
       period: { type: "year", value: 2024 },
       pages: "4983–4990",
       month: "October",
@@ -256,7 +276,8 @@ export const DETAILS_DATA: DetailsData = {
     {
       kind: "publication",
       id: "divaircity-d21",
-      title: "Key performance indicators and monitoring metrics for DivAirCity specifications",
+      title:
+        "Key performance indicators and monitoring metrics for DivAirCity specifications",
       authors: [
         "H. Cho",
         "S. Yontem",
@@ -266,6 +287,7 @@ export const DETAILS_DATA: DetailsData = {
         "L. Blond",
       ],
       period: { type: "year", value: 2022 },
+      publisher: "CULTIVATE",
       links: {
         pdf: "https://divaircity.eu/wp-content/uploads/2024/01/DivAirCity_KPIs-and-monitoring-metrics-for-DivAirCity-specifications-1.pdf",
       },
@@ -277,6 +299,7 @@ export const DETAILS_DATA: DetailsData = {
     {
       kind: "publication",
       id: "divaircity-d22",
+      publisher: "CULTIVATE",
       title: "Digital Innovation and D&I Data Management Framework",
       authors: ["H. Cho", "E. Yontem", "S. Yontem", "E. West"],
       period: { type: "year", value: 2022 },
@@ -291,7 +314,9 @@ export const DETAILS_DATA: DetailsData = {
     {
       kind: "publication",
       id: "divaircity-d24",
-      title: "DivAirCity pilot cities data sources and their acquisition framework",
+      publisher: "CULTIVATE",
+      title:
+        "DivAirCity pilot cities data sources and their acquisition framework",
       authors: [
         "K. E. Hilding-Hamann",
         "L. Blond",
@@ -314,15 +339,102 @@ export const DETAILS_DATA: DetailsData = {
     {
       kind: "publication",
       id: "cultivate-briefing-zenodo",
-      title: "CULTIVATE briefing note: Food sharing landscapes in hub city locations",
-      authors: ["A. Davies", "H. Cho", "A.-M. Gatejel", "R. Martinez Varderi", "M. Vedoa"],
-      publisher: "Zenodo",
+      title:
+        "CULTIVATE briefing note: Food sharing landscapes in hub city locations",
+      authors: [
+        "A. Davies",
+        "H. Cho",
+        "A.-M. Gatejel",
+        "R. Martinez Varderi",
+        "M. Vedoa",
+      ],
+      publisher: "CULTIVATE",
       period: { type: "year", value: 2024 },
       links: { doi: "10.5281/zenodo.11030355" },
       tags: ["transition", "governance"],
       badges: ["Project deliverable"],
       summary:
         "Policy-oriented briefing note analysing food sharing landscapes across hub city locations, with implications for urban food governance.",
+    },
+    {
+      kind: "publication",
+      id: "pub-civil-society-focus-groups-2020",
+      title:
+        "Civil Society Perspectives on Inequality: Focus Group Research Findings",
+      authors: ["L. Natarajan", "E. Ilie", "H. Cho"],
+      publisher: "Sheffield University",
+      period: { type: "year", value: 2020 },
+      tags: ["governance"],
+      badges: ["Report"],
+      summary:
+        "Presents findings from focus group research with civil society organisations across multiple UK cities.",
+    },
+    {
+      kind: "publication",
+      id: "pub-bame-awarding-gap-2020",
+      title: "BAME Awarding Gap – Research Findings",
+      authors: ["Y. Beebeejaun", "H. Cho", "A. Juangbhanich"],
+      publisher: "University College London",
+      period: { type: "year", value: 2020 },
+      tags: ["governance"],
+      badges: ["Report"],
+      summary:
+        "Investigates awarding gaps affecting BAME students and implications for higher education policy.",
+    },
+    {
+      kind: "publication",
+      id: "pub-civil-society-inequality-2021",
+      title: "A Civil Society Perspective on Inequalities: the COVID revision",
+      authors: ["H. Cho", "E. Ilie", "L. Natarajan"],
+      publisher: "UK 2070 Commission Working Paper Series",
+      period: { type: "year", value: 2021 },
+      tags: ["governance"],
+      badges: ["Working paper"],
+      summary:
+        "Analyses how civil society organisations experienced and responded to inequalities during the COVID-19 period.",
+    },
+    {
+      kind: "publication",
+      id: "pub-place-profiles-2022",
+      title: "Place Profiles: Localizing Understandings of Disadvantage",
+      authors: ["L. Natarajan", "H. Cho"],
+      publisher: "Lincoln Institute of Land Policy (UK 2070 Commission)",
+      period: { type: "year", value: 2022 },
+      tags: ["governance", "transition"],
+      badges: ["Working paper"],
+      summary:
+        "Develops place-based analytical profiles to support evidence-led regional policy and investment decisions.",
+    },
+    {
+      kind: "publication",
+      id: "pub-food-security-civil-society-2022",
+      title: "Food Security & Civil Society",
+      authors: [
+        "L. Natarajan",
+        "G. Grimble",
+        "H. Cho",
+        "M. Armstrong",
+        "A. Woodward",
+      ],
+      publisher: "University College London",
+      period: { type: "year", value: 2022 },
+      tags: ["governance", "transition"],
+      badges: ["Report"],
+      summary:
+        "Commissioned report examining the role of civil society organisations in addressing food insecurity at the local level.",
+    },
+    {
+      kind: "publication",
+      id: "pub-food-resilient-urbanism-2024",
+      title: "Food resilient urbanism: reconstructing hunger with NGOs",
+      authors: ["L. Natarajan", "H. Cho", "B. Yanful", "A. Woodward"],
+      publisher: "Edward Elgar",
+      period: { type: "year", value: 2024 },
+      pages: "125–139",
+      tags: ["transition", "governance"],
+      badges: ["Book chapter"],
+      summary:
+        "Book chapter in Pandemic Recovery? Reframing and Rescaling Societal Challenges (eds. L. Andres, J. R. Bryson, A. Ersoy, L. Reardon). Examines the role of NGOs in reconstructing urban food resilience during and after the COVID-19 pandemic.",
     },
   ],
 };
