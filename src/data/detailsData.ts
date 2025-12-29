@@ -151,10 +151,9 @@ export const DETAILS_DATA: DetailsData = {
       summary:
         "Contributed to a programme of policy-facing research on place-based disadvantage, civil society, and food security, producing evidence used in national and local decision-making.",
       achievements: [
-        "Place Profiles (Feb 2021–Feb 2022) — Produced analytical profiles used in the UK 2070 Commission report and the English Devolution White Paper.",
-        "Place Profiles (Feb 2021–Feb 2022) — Presented findings at the House of Lords on the Levelling Up bill (chaired by Lord Bob Kerslake).",
-        "Food Security & Civil Society (Feb 2021–Feb 2022) — Delivered commissioned research for a London borough, including focus groups with food banks and local groups and a policy report.",
-        "Civil Society Perspectives on Inequality (Apr 2019–Feb 2021) — Facilitated focus groups across multiple UK locations and delivered working papers to the UK 2070 Commission.",
+        "Place Profiles — Produced analytical profiles used in the UK 2070 Commission report and the English Devolution White Paper, presented findings at the House of Lords on the Levelling Up bill (chaired by Lord Bob Kerslake).",
+        "Food Security & Civil Society — Delivered commissioned research for a London borough, including focus groups with food banks and local groups and a policy report.",
+        "Civil Society Perspectives on Inequality — Facilitated focus groups across multiple UK locations and delivered working papers to the UK 2070 Commission.",
       ],
     },
     {
