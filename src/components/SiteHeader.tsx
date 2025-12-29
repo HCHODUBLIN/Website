@@ -113,7 +113,10 @@ export default function SiteHeader({
       </nav>
 
       <div className="flex items-center gap-2">
-        <TextButton href="/HC_CV.pdf" label="Curriculum Vitae (PDF)">
+        <TextButton
+          href={`${import.meta.env.BASE_URL}HC_CV.pdf`}
+          label="Curriculum Vitae (PDF)"
+        >
           CV
         </TextButton>
         <IconButton
