@@ -101,14 +101,29 @@ if (isProject(item)) {
   return null;
 }
 
-export function getSortYear(item: Item, nowYear = new Date().getFullYear()): number {
+export function getSortYearForProjects(item: Item, nowYear = new Date().getFullYear()): number {
+  const p = item.period;
+  if (!p) return -1;
+
+  // Project는 "시작" 기준
+  if (p.type === "year") return p.value;
+  if (p.type === "range") return p.from;
+  if (p.type === "ongoing") return p.from;
+
+  return nowYear;
+}
+
+export function getSortYearForPublications(item: Item, nowYear = new Date().getFullYear()): number {
   const p = item.period;
   if (!p) return -1;
 
   if (p.type === "year") return p.value;
   if (p.type === "range") return p.to;
+  if (p.type === "ongoing") return nowYear;
+
   return nowYear;
 }
+
 
 export type ChipKey = `tag:${KeywordTag}` | `badge:${string}` | `kind:${Kind}`;
 
@@ -153,17 +168,16 @@ export function sortChips(chips: ChipKey[], keywords: Record<string, { label: st
 export function sortItems(a: Item, b: Item) {
   const ka = getKind(a);
   const kb = getKind(b);
-
   if (ka !== kb) return ka === "Project" ? -1 : 1;
-  if (ka === "Publication") {
-    const ya = getSortYear(a);
-    const yb = getSortYear(b);
-    if (ya !== yb) return yb - ya;
-  }
 
-  return 0;
+  const ya =
+    ka === "Project" ? getSortYearForProjects(a) : getSortYearForPublications(a);
+  const yb =
+    kb === "Project" ? getSortYearForProjects(b) : getSortYearForPublications(b);
+
+  if (ya !== yb) return yb - ya;
+  return a.title.localeCompare(b.title);
 }
-
 
 export function filterItems(items: Item[], selected: ChipKey[]) {
   if (!selected.length) return items;
