@@ -285,8 +285,9 @@ export default function ProjectsPublicationsSection({
           className={
             embedded
               ? `
-        sticky top-6
-        h-[calc(100vh-3rem)]
+        static z-0
+        md:sticky md:top-6 md:z-10
+        md:h-[calc(100vh-3rem)]
         self-start
         rounded-2xl
         border border-white/10
@@ -321,7 +322,7 @@ export default function ProjectsPublicationsSection({
           <div
             className={
               embedded
-                ? "mt-4 max-h-[calc(100vh-12rem)] overflow-auto pr-2 pl-1 pt-2 pb-2"
+                ? "mt-4 md:max-h-[calc(100vh-12rem)] md:overflow-auto md:pr-2 md:pl-1 md:pt-2 md:pb-2"
                 : "mt-4"
             }
           >

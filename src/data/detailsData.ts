@@ -372,7 +372,7 @@ export const DETAILS_DATA: DetailsData = {
       kind: "publication",
       id: "pub-bame-awarding-gap-2020",
       title: "BAME Awarding Gap – Research Findings",
-      authors: ["Y. Beebeejaun", "H. Cho", "A. Juangbhanich"],
+      authors: ["H. Cho", "A. Juangbhanich"],
       publisher: "University College London",
       period: { type: "year", value: 2020 },
       tags: ["governance"],
@@ -387,6 +387,9 @@ export const DETAILS_DATA: DetailsData = {
       authors: ["H. Cho", "E. Ilie", "L. Natarajan"],
       publisher: "UK 2070 Commission Working Paper Series",
       period: { type: "year", value: 2021 },
+          links: {
+        pdf: "https://discovery.ucl.ac.uk/id/eprint/10125611/7/Natarajan_UK2070PapersSeries3_extracted_1.pdf",
+      },
       tags: ["governance"],
       badges: ["Report"],
       summary:
