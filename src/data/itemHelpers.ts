@@ -148,12 +148,9 @@ export function chipLabel(key: ChipKey, keywords: Record<string, { label: string
   return v;
 }
 
-export function chipTone(key: ChipKey) {
-  if (key.startsWith("kind:")) return "border border-white/40 bg-white/20 text-white/85";
-  if (key.startsWith("tag:")) return "border border-white/25 bg-transparent text-white/85";
-  return "border border-transparent bg-transparent text-white/80";
+export function chipTone(_key: ChipKey) {
+  return "border border-white/25 bg-transparent text-white/85";
 }
-
 export function sortChips(chips: ChipKey[], keywords: Record<string, { label: string }>) {
   const rank = (x: ChipKey) => (x.startsWith("kind:") ? 0 : x.startsWith("tag:") ? 1 : 2);
 
