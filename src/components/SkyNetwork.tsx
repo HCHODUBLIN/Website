@@ -45,7 +45,6 @@ export default function SkyNetwork({
     nodes.forEach((node: any, index: number) => {
       const x = Math.random() * (rect.width - padding * 2) + padding;
       const y = Math.random() * (rect.height - padding * 2) + padding;
-
       const button = document.createElement("button");
       button.className = [
         "absolute",
@@ -116,7 +115,6 @@ export default function SkyNetwork({
     const maxDegree = Math.max(1, ...degrees);
 
     const getAnchorRect = (star: HTMLElement) => {
-      // dot이 생겼으니 dot 기준으로 선 연결하면 더 예쁨
       const dot = star.querySelector(
         "span[aria-hidden='true']"
       ) as HTMLElement | null;
@@ -138,18 +136,14 @@ export default function SkyNetwork({
         const fromStar = starsRef.current[fromIndex];
         const toStar = starsRef.current[toIndex];
         if (!fromStar || !toStar) return;
-
         const fromRect = getAnchorRect(fromStar);
         const toRect = getAnchorRect(toStar);
-
         const x1 = fromRect.left - skyRect.left + fromRect.width / 2;
         const y1 = fromRect.top - skyRect.top + fromRect.height / 2;
         const x2 = toRect.left - skyRect.left + toRect.width / 2;
         const y2 = toRect.top - skyRect.top + toRect.height / 2;
-
         const avgDeg = (degrees[fromIndex] + degrees[toIndex]) / 2;
         const width = 0.3 + (avgDeg / maxDegree) * 0.6;
-
         const line = document.createElementNS(svgNS, "line");
         line.setAttribute("x1", String(x1));
         line.setAttribute("y1", String(y1));
@@ -158,7 +152,6 @@ export default function SkyNetwork({
         line.setAttribute("stroke", "rgba(255,255,255,0.45)");
         line.style.strokeWidth = `${width}px`;
         line.style.strokeLinecap = "round";
-
         svgEl.appendChild(line);
       });
     };
@@ -180,16 +173,13 @@ export default function SkyNetwork({
     const applyFocus = (star: HTMLElement) => {
       const skyRect = sky.getBoundingClientRect();
       const starRect = star.getBoundingClientRect();
-
       const cx = skyRect.left + skyRect.width / 2;
       const cy = skyRect.top + skyRect.height / 2;
       const sx = starRect.left + starRect.width / 2;
       const sy = starRect.top + starRect.height / 2;
-
       const factor = 0.25;
       const tx = (cx - sx) * factor;
       const ty = (cy - sy) * factor;
-
       sky.style.transform = `translate(${tx}px, ${ty}px) scale(1.15)`;
       sky.classList.add("focus-mode");
       drawNetworkLines();
@@ -202,12 +192,9 @@ export default function SkyNetwork({
 
     const onStarClick = (star: HTMLButtonElement) => (e: MouseEvent) => {
       if ((star as any)._dragging) return;
-
       e.stopPropagation();
-
       const raw = star.dataset.tag;
       if (!raw) return;
-
       if (!isKeywordTag(raw)) {
         resetFocus();
         resetStarPositions();

@@ -1,5 +1,5 @@
-import { useMemo } from "react";
 import { KEYWORDS, type KeywordTag } from "../data/detailsData";
+import { KEYWORD_ICON_MAP } from "../components/icons";
 
 const PHILOSOPHY: Record<KeywordTag, { blurb: string }> = {
   governance: {
@@ -20,108 +20,26 @@ const PHILOSOPHY: Record<KeywordTag, { blurb: string }> = {
   },
 };
 
-function KeywordIcon({ tag }: { tag: KeywordTag }) {
-  const common = "h-4 w-4 opacity-80";
-  switch (tag) {
-    case "governance":
-      return (
-        <svg
-          className={common}
-          viewBox="0 0 24 24"
-          fill="none"
-          aria-hidden="true"
-        >
-          <path
-            d="M12 3l8 4v6c0 5-3.5 8-8 8s-8-3-8-8V7l8-4z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          />
-          <path
-            d="M8 12h8M10 15h4"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      );
-    case "data-ai":
-      return (
-        <svg
-          className={common}
-          viewBox="0 0 24 24"
-          fill="none"
-          aria-hidden="true"
-        >
-          <path d="M7 7h10v10H7V7z" stroke="currentColor" strokeWidth="1.5" />
-          <path
-            d="M4 9V5h4M20 9V5h-4M4 15v4h4M20 15v4h-4"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      );
-    case "transition":
-      return (
-        <svg
-          className={common}
-          viewBox="0 0 24 24"
-          fill="none"
-          aria-hidden="true"
-        >
-          <path
-            d="M7 14c3-6 7-6 10 0"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-          <path
-            d="M12 3v4M12 17v4"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      );
-    case "impact-measurement":
-      return (
-        <svg
-          className={common}
-          viewBox="0 0 24 24"
-          fill="none"
-          aria-hidden="true"
-        >
-          <path d="M5 19V5h14v14H5z" stroke="currentColor" strokeWidth="1.5" />
-          <path
-            d="M8 15l2-3 2 2 3-5 1 2"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      );
-    default:
-      return null;
-  }
-}
-
 export default function DetailsPanel({
   activeTag,
 }: {
   activeTag: KeywordTag | null;
 }) {
-  const meta = useMemo(() => {
-    if (!activeTag) return null;
-    return KEYWORDS[activeTag];
-  }, [activeTag]);
+  if (!activeTag) {
+    return (
+      <div className="rounded-2xl border border-white/15 bg-black/40 p-5">
+        <div className="text-[0.85rem] opacity-70">
+          Select a keyword to see my perspective.
+        </div>
+      </div>
+    );
+  }
 
-  const text = useMemo(() => {
-    if (!activeTag) return "";
-    return PHILOSOPHY[activeTag]?.blurb ?? "";
-  }, [activeTag]);
+  const meta = KEYWORDS[activeTag];
+  const text = PHILOSOPHY[activeTag]?.blurb ?? "";
+  const Icon = KEYWORD_ICON_MAP[activeTag];
 
-  if (!activeTag || !meta) {
+  if (!meta) {
     return (
       <div className="rounded-2xl border border-white/15 bg-black/40 p-5">
         <div className="text-[0.85rem] opacity-70">
@@ -135,7 +53,7 @@ export default function DetailsPanel({
     <div className="rounded-2xl border border-white/15 bg-black/40 p-5">
       <div className="flex items-start gap-3">
         <div className="mt-[2px]">
-          <KeywordIcon tag={activeTag} />
+          {Icon ? <Icon className="h-4 w-4 opacity-80" /> : null}
         </div>
 
         <div className="min-w-0">

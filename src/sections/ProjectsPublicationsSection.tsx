@@ -22,77 +22,12 @@ import {
   isProject,
 } from "../data/itemHelpers";
 
+import { IconGlobe, IconLink, IconPdf } from "../components/icons";
+
 const STORAGE_KEY = "pp_selected_chips_v1";
 
 function isFilterChip(c: ChipKey) {
   return c.startsWith("tag:") || c.startsWith("kind:");
-}
-
-function IconLink() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={1.5}
-      stroke="currentColor"
-      className="h-4 w-4"
-      aria-hidden="true"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
-      />
-    </svg>
-  );
-}
-
-function IconPdf() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={1.5}
-      stroke="currentColor"
-      className="h-4 w-4"
-      aria-hidden="true"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
-      />
-    </svg>
-  );
-}
-
-function IconGlobe() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={1.5}
-      stroke="currentColor"
-      className="h-4 w-4"
-      aria-hidden="true"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"
-      />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3.6 9h16.8" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3.6 15h16.8" />
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12 3c2.6 2.5 4.2 5.7 4.2 9S14.6 18.5 12 21c-2.6-2.5-4.2-5.7-4.2-9S9.4 5.5 12 3Z"
-      />
-    </svg>
-  );
 }
 
 function Chip({
@@ -136,53 +71,52 @@ function RightActions({
   itemId: string;
   actions: RightAction[];
 }) {
-  if (!actions.length) return null;
+  const visible = actions.filter((a) => a.kind !== "logo");
+  if (!visible.length) return null;
 
   return (
     <div className="flex shrink-0 flex-col items-end gap-2">
-      {actions
-        .filter((a) => a.kind !== "logo")
-        .map((a) => {
-          const icon =
-            a.kind === "doi" ? (
-              <IconLink />
-            ) : a.kind === "pdf" ? (
-              <IconPdf />
-            ) : (
-              <IconGlobe />
-            );
-
-          const tooltip =
-            a.kind === "doi" ? "DOI" : a.kind === "pdf" ? "PDF" : "Website";
-
-          const label =
-            a.kind === "doi"
-              ? "Open DOI"
-              : a.kind === "pdf"
-              ? "Open PDF"
-              : "Open website";
-
-          return (
-            <a
-              key={`${itemId}:${a.kind}`}
-              href={a.href}
-              target="_blank"
-              rel="noreferrer"
-              className="
-                inline-flex h-9 w-9 items-center justify-center
-                rounded-full border border-white/30
-                opacity-80 hover:opacity-100
-                transition-[opacity,transform] duration-200
-                hover:-translate-y-[1px]
-              "
-              title={tooltip}
-              aria-label={label}
-              onClick={(e) => e.stopPropagation()}
-            >
-              {icon}
-            </a>
+      {visible.map((a) => {
+        const icon =
+          a.kind === "doi" ? (
+            <IconLink className="h-4 w-4" />
+          ) : a.kind === "pdf" ? (
+            <IconPdf className="h-4 w-4" />
+          ) : (
+            <IconGlobe className="h-4 w-4" />
           );
-        })}
+
+        const tooltip =
+          a.kind === "doi" ? "DOI" : a.kind === "pdf" ? "PDF" : "Website";
+
+        const label =
+          a.kind === "doi"
+            ? "Open DOI"
+            : a.kind === "pdf"
+            ? "Open PDF"
+            : "Open website";
+
+        return (
+          <a
+            key={`${itemId}:${a.kind}`}
+            href={a.href}
+            target="_blank"
+            rel="noreferrer"
+            className="
+              inline-flex h-9 w-9 items-center justify-center
+              rounded-full border border-white/30
+              opacity-80 hover:opacity-100
+              transition-[opacity,transform] duration-200
+              hover:-translate-y-[1px]
+            "
+            title={tooltip}
+            aria-label={label}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {icon}
+          </a>
+        );
+      })}
     </div>
   );
 }
