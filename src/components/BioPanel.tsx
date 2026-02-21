@@ -77,9 +77,7 @@ export default function BioPanel() {
           </div>
         </div>
 
-        <p className="text-[0.75rem] opacity-100 leading-none">
-          Based in Dublin | github.com/HCHODUBLIN | linkedin.com/in/hyunjic
-        </p>
+        <p className="text-[0.75rem] opacity-100 leading-none">Based in Dublin</p>
         <div className="mt-6 border-t border-white/10 pt-4 text-[0.75rem] leading-relaxed text-white/45">
           <p className="m-0">
             © {new Date().getFullYear()} Hyunji Cho. Built with React and
