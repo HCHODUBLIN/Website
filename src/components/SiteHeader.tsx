@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { IconGitHub, IconLinkedIn, IconScholar } from "../components/icons";
+import {
+  IconGitHub,
+  IconLinkedIn,
+  IconPdf,
+  IconScholar,
+} from "../components/icons";
 
 type NavItem = { label: string; href: string };
 
@@ -79,6 +84,13 @@ export default function SiteHeader({
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
+          <IconButton
+            href={`${import.meta.env.BASE_URL}HC_CV.pdf`}
+            label="Curriculum Vitae (PDF)"
+          >
+            <IconPdf className="h-4 w-4" />
+          </IconButton>
+
           <IconButton
             href="https://www.linkedin.com/in/hyunjic/"
             label="LinkedIn profile"

@@ -240,17 +240,17 @@ export function IconScholar({ className, ...props }: IconProps) {
       {...props}
     >
       <path
-        d="M12 4L3 8.5 12 13l9-4.5L12 4z"
+        d="M12 2.8L1.8 8 12 13.2 22.2 8 12 2.8z"
         fill="currentColor"
       />
       <path
-        d="M6 11.5V15c0 1.8 2.7 3.2 6 3.2s6-1.4 6-3.2v-3.5"
+        d="M5.2 11.4V15.7c0 2.2 3.1 4 6.8 4s6.8-1.8 6.8-4v-4.3"
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
       />
       <path
-        d="M21 8.5v5"
+        d="M22.2 8v5.8"
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
