@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IconGitHub, IconLinkedIn, IconMail } from "../components/icons";
+import { IconGitHub, IconLinkedIn, IconScholar } from "../components/icons";
 
 type NavItem = { label: string; href: string };
 
@@ -35,53 +35,6 @@ function IconButton({
         hover:text-black
         hover:-translate-y-[1px]
       "
-    >
-      {children}
-    </a>
-  );
-}
-
-function TextButton({
-  href,
-  label,
-  children,
-  newTab = false,
-  className = "",
-}: {
-  href: string;
-  label: string;
-  children: React.ReactNode;
-  newTab?: boolean;
-  className?: string;
-}) {
-  const isExternal = isExternalHref(href);
-  const shouldOpenNewTab = newTab || isExternal;
-
-  return (
-    <a
-      href={href}
-      target={shouldOpenNewTab ? "_blank" : undefined}
-      rel={shouldOpenNewTab ? "noreferrer" : undefined}
-      aria-label={label}
-      className={[
-        `
-          inline-flex h-8 items-center justify-center
-          rounded-full
-          border border-white/50
-          px-3
-          text-[0.75rem]
-          font-medium
-          uppercase
-          tracking-[0.08em]
-          text-neutral-100
-          transition-[background-color,color,transform]
-          duration-200
-          hover:bg-neutral-100
-          hover:text-black
-          hover:-translate-y-[1px]
-        `,
-        className,
-      ].join(" ")}
     >
       {children}
     </a>
@@ -126,15 +79,6 @@ export default function SiteHeader({
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
-          <TextButton
-            href={`${import.meta.env.BASE_URL}HC_CV.pdf`}
-            label="Curriculum Vitae (PDF)"
-            newTab
-            className="hidden md:inline-flex"
-          >
-            CV
-          </TextButton>
-
           <IconButton
             href="https://www.linkedin.com/in/hyunjic/"
             label="LinkedIn profile"
@@ -149,8 +93,8 @@ export default function SiteHeader({
             <IconGitHub className="h-4 w-4" />
           </IconButton>
 
-          <IconButton href="mailto:hyunji.cho.uk@gmail.com" label="Email">
-            <IconMail className="h-4 w-4" />
+          <IconButton href="https://scholar.google.com/" label="Google Scholar">
+            <IconScholar className="h-4 w-4" />
           </IconButton>
 
           <button

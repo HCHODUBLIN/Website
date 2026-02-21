@@ -10,7 +10,7 @@ export const KEYWORDS = {
       "Designing clear entities, relationships, and metric logic that make data decision-ready.",
   },
   "data-ai": {
-    label: "AI / ML",
+    label: "AI/ML",
     description:
       "Building LLM/ML-driven classification and enrichment workflows for large-scale analytics systems.",
   },
@@ -93,16 +93,17 @@ export const DETAILS_DATA: DetailsData = {
       period: { type: "range", from: 2023, to: 2026 },
       funder: "EU Horizon 2020",
       summary:
-        "Led the design of a data platform combining LLM-based classification with structured pipelines to automate ingestion and categorisation across 105 cities.",
+        "Built an analytics platform that automates discovery and categorisation of food-sharing initiatives across 105 European cities.",
       achievements: [
-        "Built medallion architecture on Snowflake with dbt, improving classification accuracy from 32% to 74.5%.",
+        "Designed a medallion architecture (Bronze/Silver/Gold) on Snowflake with dbt, improving classification accuracy from 32% to 74.5%.",
         "Processed 200,000+ records through automated LLM-assisted categorisation and validation workflows.",
+        "Implemented automated testing and version-controlled transformation pipelines with CI/CD integration.",
         "Stack: Snowflake, dbt, Azure (Data Factory, SQL), Python, LLM/OpenAI API, GitHub Actions.",
-        "Published: ACM WSDM 2026 · ACM CIKM 2024.",
+        "Published: 2 peer-reviewed systems papers (ACM) + 2 journal articles.",
       ],
       links: {
         website: "https://cultivate-project.eu/",
-        github: "https://github.com/HCHODUBLIN/cultivate-mapping-pipeline",
+        github: "https://github.com/HCHODUBLIN/CULTIVATE",
       },
     },
     {
@@ -113,58 +114,62 @@ export const DETAILS_DATA: DetailsData = {
       funder: "EU Horizon 2020",
       period: { type: "range", from: 2021, to: 2024 },
       summary:
-        "Designed analytics architectures for real-time environmental sensor data across multiple European cities.",
+        "Built data pipelines and analytics models for environmental sensor monitoring across multiple European cities.",
       achievements: [
-        "Built automated ETL pipelines with Kafka for IoT data streaming under GDPR governance constraints.",
-        "Integrated environmental, demographic, and perception data into decision-ready models for city teams.",
+        "Developed automated ETL workflows integrating IoT, demographic, and perception datasets.",
+        "Reduced manual processing time by approximately 10 hours per week through pipeline automation.",
+        "Delivered Power BI dashboards for cross-city comparative analysis.",
         "Stack: Kafka, Python, SQL, Power BI, Azure.",
       ],
       links: {
         website: "https://divaircity.eu/",
-        github: "https://github.com/HCHODUBLIN/divaircity-data-framework",
+        github: "https://github.com/HCHODUBLIN/DivAirCity",
       },
     },
     {
       kind: "project",
       id: "proj-shareweave",
-      title:
-        "SHAREWEAVE: Mapping governance and social impact in food sharing networks",
+      title: "SHAREWEAVE — Social Impact Analytics for Food Systems",
       tags: ["impact-measurement", "data-ai"],
       period: { type: "year", value: 2026 },
       funder: "Research Ireland",
       summary:
-        "Principal Investigator for a funded project with FoodCloud, developing an integrated data pipeline that links mapping, impact analysis, and ESG-aligned reporting to capture governance and network-based social impact of food-sharing initiatives.",
+        "Designed analytics workflows to evaluate the social impact of food-sharing infrastructures using structured data modelling and AI-assisted categorisation.",
       achievements: [
-        "Secured €12,000 competitive funding as PI under the Research Ireland New Foundations scheme.",
-        "Designed a relational mapping and impact framework combining qualitative and spatial data.",
-        "Coordinating a co-learning workshop with civic partners to translate findings into policy-relevant insights.",
+        "Built classification and reporting pipelines to support impact measurement frameworks.",
+        "Developed KPI dashboards for policy and civic stakeholders.",
+        "Stack: Snowflake, dbt, Python, Power BI, LLM/OpenAI API.",
+        "Published: Ongoing policy and academic outputs.",
       ],
     },
     {
       kind: "project",
       id: "proj-uk2070",
-      title: "UK 2070: Civil society, inequality and place-based disadvantage",
+      title: "UK 2070 — Civil Society, Inequality and Place-Based Disadvantage",
       tags: ["impact-measurement"],
       funder: "Lincoln Institute of Land Policy / UK 2070 Commission",
       period: { type: "range", from: 2019, to: 2022 },
       summary:
-        "Contributed to a programme of policy-facing research on place-based disadvantage, civil society, and food security, producing evidence used in national and local decision-making.",
+        "Delivered policy-facing analytics on place-based disadvantage and civil society, producing evidence used in national and local decision-making.",
       achievements: [
-        "Place Profiles — Produced analytical profiles used in the UK 2070 Commission report and the English Devolution White Paper, presented findings at the House of Lords on the Levelling Up bill (chaired by Lord Bob Kerslake).",
-        "Food Security & Civil Society — Delivered commissioned research for a London borough, including focus groups with food banks and local groups and a policy report.",
-        "Civil Society Perspectives on Inequality — Facilitated focus groups across multiple UK locations and delivered working papers to the UK 2070 Commission.",
+        "Findings cited in the English Devolution White Paper.",
+        "Presented research at the House of Lords during the Levelling Up Bill process.",
+        "Delivered 3+ commissioned analytical reports for national and local institutions.",
+        "Conducted cross-city statistical analysis and inequality profiling.",
+        "3 peer-reviewed journal articles.",
       ],
     },
     {
       kind: "project",
       id: "proj-phd",
-      title: "PhD research – Planning & participation",
+      title: "PhD & Commissioned Research",
+      tags: ["impact-measurement"],
       summary:
-        "Doctoral research on recognition, planning practices and community participation in a diverse Seoul neighbourhood.",
+        "Conducted doctoral research at UCL while delivering commissioned policy analytics projects for national research institutes.",
       achievements: [
-        "Developed a recognition-focused framework for analysing participation and governance.",
-        "Generated empirical findings that underpin later work on inclusion, democracy and data justice.",
-        "Published multiple peer-reviewed papers on diversity, governance and planning practice.",
+        "Delivered 5+ commissioned research reports (KRIHS, AURI, UCL DPU).",
+        "Conducted cross-national statistical benchmarking (Korea, UK).",
+        "3 peer-reviewed journal articles · 47 published policy analysis entries.",
       ],
       period: { type: "range", from: 2014, to: 2019 },
     },

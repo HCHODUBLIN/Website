@@ -21,30 +21,30 @@ const KEYWORD_ICON_MAP: Partial<
 const PHILOSOPHY: Record<KeywordTag, { blurb: string }> = {
   governance: {
     blurb:
-      "Designing medallion architectures (Bronze/Silver/Gold), dimensional models, and entity resolution systems that turn fragmented data into trusted, decision-ready structures. Focus on data quality measurement (precision, recall, F1) and governance-compliant schema design.",
+      "Design medallion architectures (Bronze/Silver/Gold) and dimensional models that turn fragmented data into trusted, decision-ready structures. Focus on measurable data quality (precision, recall, F1) and governance-compliant schema design.",
   },
   "data-ai": {
     blurb:
-      "Developing LLM-based classification pipelines that process 200,000+ records with human-in-the-loop evaluation. Iterative prompt engineering and accuracy improvement (32% → 74.5%) through structured evaluation frameworks.",
+      "Build LLM-based classification pipelines for 200,000+ records with human-in-the-loop evaluation. Improved classification accuracy from 32% to 74.5% through structured testing and prompt iteration frameworks.",
   },
   transition: {
     blurb:
-      "Building automated pipelines that ingest, transform, and deliver data at scale. Working with Snowflake, dbt, Kafka, and Airflow to create reproducible, tested, and version-controlled data workflows.",
+      "Build automated pipelines to ingest, transform, and deliver data at scale with reproducible, version-controlled workflows. Design ELT patterns using Snowflake and dbt, integrating orchestration and structured validation layers.",
   },
   "impact-measurement": {
     blurb:
-      "Translating complex data into actionable insights through Power BI dashboards, KPI frameworks, and executive reporting. Making analytical outputs usable and trusted by non-technical stakeholders and decision-makers.",
+      "Translate complex data into actionable insights via Power BI dashboards, KPI frameworks, and executive reporting. Ensure analytical outputs are usable, interpretable, and trusted by non-technical stakeholders.",
   },
   python: {
     blurb:
-      "CI/CD with GitHub Actions, automated testing (dbt tests, schema validation), Docker containerisation, and comprehensive documentation (architecture decision records, ERDs, data dictionaries).",
+      "Implement CI/CD with GitHub Actions, automated testing (dbt tests, schema validation), and structured documentation (ADRs, ERDs, data dictionaries). Use Docker where appropriate to support reproducible environments and controlled deployments.",
   },
 };
 
 const STACK_LINE =
-  "Stack: Snowflake · dbt · SQL · Python · Power BI · LLM/OpenAI API · Kafka · GitHub Actions";
+  "Stack: Snowflake · dbt · SQL · Python · Power BI · LLM/OpenAI API · GitHub Actions";
 const CLOUD_LINE =
-  "Cloud: Azure (Data Factory, SQL, Blob Storage) — AZ-900 certified";
+  "Cloud: Azure (Data Factory, SQL, Blob Storage) · AZ-900";
 
 export default function DetailsPanel({
   activeTag,

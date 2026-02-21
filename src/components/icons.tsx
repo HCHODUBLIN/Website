@@ -229,3 +229,32 @@ export function IconMail({ className, ...props }: IconProps) {
     </svg>
   );
 }
+
+export function IconScholar({ className, ...props }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      className={className}
+      {...props}
+    >
+      <path
+        d="M12 4L3 8.5 12 13l9-4.5L12 4z"
+        fill="currentColor"
+      />
+      <path
+        d="M6 11.5V15c0 1.8 2.7 3.2 6 3.2s6-1.4 6-3.2v-3.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M21 8.5v5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}

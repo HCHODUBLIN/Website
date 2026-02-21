@@ -37,7 +37,7 @@ export default function BioPanel() {
 
         <p className="mb-[1.4rem] text-[0.8rem] leading-[1.45] opacity-85">
           I design data systems that turn fragmented information into
-          decision-ready structures — combining data modelling, automated
+          decision-ready data products — combining data modelling, automated
           pipelines, and LLM-based classification at scale.
         </p>
 

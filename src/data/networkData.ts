@@ -17,7 +17,7 @@ export const NETWORK_DATA: NetworkData = {
   nodes: [
     { id: "governance", label: "Data Modelling" },
     { id: "transition", label: "Data Engineering" },
-    { id: "data-ai", label: "AI / ML" },
+    { id: "data-ai", label: "AI/ML" },
     { id: "impact-measurement", label: "Data Analytics & BI" },
     { id: "python", label: "DevOps & Quality" },
   ],
