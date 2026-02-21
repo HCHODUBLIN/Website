@@ -32,19 +32,20 @@ export default function BioPanel() {
         </h1>
 
         <p className="mt-[0.35rem] mb-[1.1rem] text-[0.85rem] opacity-85 leading-tight">
-          Sustainability Data & Analytics Specialist
+          Analytics Engineer
         </p>
 
         <p className="mb-[1.4rem] text-[0.8rem] leading-[1.45] opacity-85">
-          I build data-driven sustainability systems that integrate impact
-          measurement, AI/ML workflows and governance insights.
+          I design data systems that turn fragmented information into
+          decision-ready structures — combining data modelling, automated
+          pipelines, and LLM-based classification at scale.
         </p>
 
         <div className="mb-[1.4rem] grid grid-cols-[72px_1fr] gap-y-[0.25rem] text-[0.75rem] leading-[1.3] opacity-85">
           <div className="opacity-60 tabular-nums">2024–Now</div>
           <div>
             <div className="leading-tight">
-              Research Fellow (Sustainability Data & Analytics)
+              Lead Analytics Engineer (Sharing Solutions)
             </div>
             <div className="opacity-60 leading-tight">
               Trinity College Dublin
@@ -53,16 +54,14 @@ export default function BioPanel() {
 
           <div className="opacity-60 tabular-nums">2021–2024</div>
           <div>
-            <div className="leading-tight">
-              Senior Data & Sustainability Consultant
-            </div>
+            <div className="leading-tight">Senior Data Analytics Engineer</div>
             <div className="opacity-60 leading-tight">EcoWise, London</div>
           </div>
 
           <div className="opacity-60 tabular-nums">2019–2021</div>
           <div>
             <div className="leading-tight">
-              Research Associate (Urban Governance & Policy)
+              Policy Consultant & Research Engineer
             </div>
             <div className="opacity-60 leading-tight">
               University College London
@@ -72,7 +71,7 @@ export default function BioPanel() {
           <div className="opacity-60 tabular-nums">2014–2019</div>
           <div>
             <div className="leading-tight">
-              PhD Researcher (Urban Planning & Governance)
+              PhD Researcher (Network Analysis & Spatial Data Modelling)
             </div>
             <div className="opacity-60 leading-tight">
               University College London
@@ -81,7 +80,7 @@ export default function BioPanel() {
         </div>
 
         <p className="text-[0.75rem] opacity-100 leading-none">
-          Based in Dublin
+          Based in Dublin | github.com/HCHODUBLIN | linkedin.com/in/hyunjic
         </p>
         <div className="mt-6 border-t border-white/10 pt-4 text-[0.75rem] leading-relaxed text-white/45">
           <p className="m-0">

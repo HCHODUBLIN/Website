@@ -5,30 +5,41 @@ import {
   IconKeywordImpactMeasurement,
   IconKeywordTransition,
 } from "../components/icons";
+import type React from "react";
 
-const KEYWORD_ICON_MAP = {
+const KEYWORD_ICON_MAP: Partial<
+  Record<KeywordTag, React.ComponentType<{ className?: string }>>
+> = {
   governance: IconKeywordGovernance,
   "data-ai": IconKeywordDataAi,
   transition: IconKeywordTransition,
   "impact-measurement": IconKeywordImpactMeasurement,
-} as const;
+};
 
 const PHILOSOPHY: Record<KeywordTag, { blurb: string }> = {
   governance: {
     blurb:
-      "I approach governance as a process of knowledge production and recognition: how decisions are shaped, whose voices are heard, and which everyday practices are rendered visible or invisible. Rather than treating participation as a formal or top-down mechanism, I understand governance as relational and situated, emerging through ongoing interactions between communities, institutions, and data.",
+      "I design Snowflake warehouse layers that keep raw, transformed, and curated data clearly separated while preserving lineage and auditability. My focus is reliable performance, transparent ownership, and models that downstream teams can trust for operational and strategic decisions.",
   },
   "data-ai": {
     blurb:
-      "I work with data and digital methods not as neutral technical tools, but as situated systems that shape how social and environmental realities are defined, measured, and acted upon. My approach focuses on identifying data gaps, designing transparent analytical frameworks, and using automation to make socio-environmental information more accessible, accountable, and usable for decision-making.",
+      "I build analytics platforms and data pipelines that make complex, fragmented data usable at scale. My current work centres on designing medallion architectures (Bronze/Silver/Gold) on Snowflake, writing dbt transformation layers, and building LLM-based classification systems that process 200,000+ records with measurable accuracy improvements. My path into data engineering came through sustainability and urban research, which means I approach every technical decision with a question: who uses this data, and what decision does it need to support? This combination of engineering depth and domain-aware design thinking is what I bring to every project. Stack: Snowflake, dbt, Python, SQL, Azure (Data Factory, SQL, Blob Storage), Power BI, LLM/OpenAI API, Kafka, GitHub Actions CI/CD.",
   },
   transition: {
     blurb:
-      "I understand sustainable transition as an uneven and contested process that unfolds through everyday practices rather than abstract targets alone. My work focuses on how marginalised communities, particularly through practices such as food sharing, navigate, reshape, and reimagine sustainability from below, contributing to agroecological transitions and climate resilience beyond formal policy frameworks.",
+      "I use dbt to translate business and research logic into modular, testable transformation layers. Clear model contracts, documentation, and reproducible workflows make complex metrics explainable and keep analytics outputs stable as upstream systems evolve.",
   },
   "impact-measurement": {
     blurb:
-      "For me, impact measurement is not simply about quantifying outcomes, but about translating broad sustainability goals into meaningful, context-sensitive indicators that reflect lived realities. I develop frameworks and metrics that support accountability and learning, enabling organisations to act with greater clarity while remaining attentive to social inclusion, justice, and local conditions.",
+      "I treat data modelling as product design for decision systems. I define entities, relationships, and metric logic so teams can move from fragmented records to consistent, decision-ready views with explicit assumptions and traceable logic.",
+  },
+  python: {
+    blurb:
+      "I use Python for ingestion, enrichment, validation, and quality controls across large datasets. The goal is repeatable, observable workflows that reduce manual review and improve reliability from source capture to model output.",
+  },
+  azure: {
+    blurb:
+      "I build and orchestrate Azure-based data workflows using Data Factory, Azure SQL, and Blob Storage. I focus on robust scheduling, secure handoffs between services, and predictable operations that support production analytics.",
   },
 };
 

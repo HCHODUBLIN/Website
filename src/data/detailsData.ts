@@ -5,24 +5,34 @@ export type KeywordMeta = {
 
 export const KEYWORDS = {
   governance: {
-    label: "Governance",
+    label: "Snowflake",
     description:
-      "Experience in governance, participation and multi-stakeholder coordination, supporting evidence-based decision-making across public institutions, EU programmes and civil society partners.",
+      "Designing and operating warehouse layers for reliable, analytics-ready data products.",
   },
   "data-ai": {
-    label: "Data & AI",
+    label: "LLM Pipelines",
     description:
-      "SQL engineering, ETL design, LLM/ML modelling and automated classification systems used to improve data accuracy, reduce manual processing and enable scalable analytics.",
+      "Building classification and enrichment pipelines that combine structured data engineering with LLM workflows.",
   },
   transition: {
-    label: "Sustainable transition",
+    label: "dbt",
     description:
-      "Work on sustainable and just transitions in urban and food systems, combining indicators, data governance frameworks and cross-sector partnerships.",
+      "Developing modular transformation models with testing and documentation for traceable analytics.",
   },
   "impact-measurement": {
-    label: "Impact measurement",
+    label: "Data Modelling",
     description:
-      "Development of CSRD- and GRI-aligned indicators, KPI frameworks and reporting structures that strengthen compliance, auditability and organisational transparency.",
+      "Turning fragmented sources into clear, decision-aligned entities, metrics, and semantic layers.",
+  },
+  python: {
+    label: "Python",
+    description:
+      "Automating ingestion, validation, and transformation workflows for scalable data processing.",
+  },
+  azure: {
+    label: "Azure",
+    description:
+      "Orchestrating cloud data pipelines across Data Factory, SQL, and Blob Storage environments.",
   },
 } as const satisfies Record<string, KeywordMeta>;
 
