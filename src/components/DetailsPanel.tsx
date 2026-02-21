@@ -1,5 +1,17 @@
 import { KEYWORDS, type KeywordTag } from "../data/detailsData";
-import { KEYWORD_ICON_MAP } from "../components/icons";
+import {
+  IconKeywordDataAi,
+  IconKeywordGovernance,
+  IconKeywordImpactMeasurement,
+  IconKeywordTransition,
+} from "../components/icons";
+
+const KEYWORD_ICON_MAP = {
+  governance: IconKeywordGovernance,
+  "data-ai": IconKeywordDataAi,
+  transition: IconKeywordTransition,
+  "impact-measurement": IconKeywordImpactMeasurement,
+} as const;
 
 const PHILOSOPHY: Record<KeywordTag, { blurb: string }> = {
   governance: {

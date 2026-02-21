@@ -30,6 +30,16 @@ function isFilterChip(c: ChipKey) {
   return c.startsWith("tag:") || c.startsWith("kind:");
 }
 
+function applyDefaultTag(
+  source: Set<ChipKey>,
+  defaultTag: KeywordTag | null
+): Set<ChipKey> {
+  if (!defaultTag) return new Set(source);
+  const next = new Set(Array.from(source).filter((k) => !k.startsWith("tag:")));
+  next.add(`tag:${defaultTag}` as ChipKey);
+  return next;
+}
+
 function Chip({
   k,
   active,
@@ -42,7 +52,7 @@ function Chip({
   const base =
     "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[0.7rem] uppercase tracking-[0.06em] leading-none transition-[opacity,transform,background-color,color,border-color] duration-150";
 
-  const idleTone = chipTone(k);
+  const idleTone = chipTone();
   const activeTone =
     "bg-white/30 text-white border border-white/20 shadow-[0_0_0_1px_rgba(255,255,255,0.6)]";
 
@@ -128,9 +138,9 @@ export default function ProjectsPublicationsSection({
   embedded?: boolean;
   defaultTag?: KeywordTag | null;
 }) {
-  const [selected, setSelected] = useState<Set<ChipKey>>(() => {
+  const [selectedBase, setSelectedBase] = useState<Set<ChipKey>>(() => {
     const stored = readStoredChips(STORAGE_KEY);
-    return new Set(stored);
+    return applyDefaultTag(new Set(stored), defaultTag);
   });
 
   const [expandedAchievements, setExpandedAchievements] = useState<Set<string>>(
@@ -146,23 +156,10 @@ export default function ProjectsPublicationsSection({
     });
   };
 
-  useEffect(() => {
-    if (!defaultTag) {
-      clearStoredChips(STORAGE_KEY);
-      setSelected(new Set());
-      return;
-    }
-
-    const tagKey = `tag:${defaultTag}` as ChipKey;
-
-    setSelected((prev) => {
-      const next = new Set(
-        Array.from(prev).filter((k) => !k.startsWith("tag:"))
-      );
-      next.add(tagKey);
-      return next;
-    });
-  }, [defaultTag]);
+  const selected = useMemo(
+    () => applyDefaultTag(selectedBase, defaultTag),
+    [selectedBase, defaultTag]
+  );
 
   useEffect(() => {
     writeStoredChips(STORAGE_KEY, Array.from(selected));
@@ -190,8 +187,8 @@ export default function ProjectsPublicationsSection({
   }, [sortedItems, selectedArr]);
 
   const toggle = (k: ChipKey) => {
-    setSelected((prev) => {
-      const next = new Set(prev);
+    setSelectedBase((prev) => {
+      const next = applyDefaultTag(prev, defaultTag);
       if (next.has(k)) next.delete(k);
       else next.add(k);
       return next;
@@ -200,7 +197,7 @@ export default function ProjectsPublicationsSection({
 
   const clear = () => {
     clearStoredChips(STORAGE_KEY);
-    setSelected(new Set());
+    setSelectedBase(new Set());
   };
 
   return (
@@ -366,7 +363,9 @@ export default function ProjectsPublicationsSection({
                       </div>
 
                       <div className="mt-3 flex flex-wrap gap-2">
-                        {getChips(it).map((c) => (
+                        {getChips(it)
+                          .filter(isFilterChip)
+                          .map((c) => (
                           <Chip
                             key={`${it.id}:${c}`}
                             k={c}

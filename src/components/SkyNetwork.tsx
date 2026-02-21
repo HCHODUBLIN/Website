@@ -3,6 +3,7 @@ import type { Dispatch, SetStateAction } from "react";
 import { NETWORK_DATA } from "../data/networkData";
 import { DETAILS_DATA } from "../data/detailsData";
 import type { KeywordTag } from "../data/detailsData";
+import type { NetworkEdge, NetworkNode } from "../data/networkData";
 
 const isKeywordTag = (v: string): v is KeywordTag => v in DETAILS_DATA.keywords;
 
@@ -42,7 +43,9 @@ export default function SkyNetwork({
     const padding = 40;
     const rect = sky.getBoundingClientRect();
 
-    nodes.forEach((node: any, index: number) => {
+    const suppressClickFor = new WeakSet<HTMLButtonElement>();
+
+    nodes.forEach((node: NetworkNode, index: number) => {
       const x = Math.random() * (rect.width - padding * 2) + padding;
       const y = Math.random() * (rect.height - padding * 2) + padding;
       const button = document.createElement("button");
@@ -98,7 +101,7 @@ export default function SkyNetwork({
     const degrees = new Array(nodes.length).fill(0);
     const edges: Array<[number, number]> = [];
 
-    edgesRaw.forEach((edge: any) => {
+    edgesRaw.forEach((edge: NetworkEdge) => {
       const fromIndex = nodeIdToIndex[edge.from];
       const toIndex = nodeIdToIndex[edge.to];
       if (
@@ -191,7 +194,7 @@ export default function SkyNetwork({
     };
 
     const onStarClick = (star: HTMLButtonElement) => (e: MouseEvent) => {
-      if ((star as any)._dragging) return;
+      if (suppressClickFor.has(star)) return;
       e.stopPropagation();
       const raw = star.dataset.tag;
       if (!raw) return;
@@ -282,14 +285,15 @@ export default function SkyNetwork({
 
         try {
           dragStar.releasePointerCapture(e.pointerId);
-        } catch {}
+        } catch {
+          // Ignore release errors if capture already ended.
+        }
         if (moved) {
-          (dragStar as any)._dragging = true;
+          const releasedStar = dragStar;
+          suppressClickFor.add(releasedStar);
           window.setTimeout(() => {
-            if (dragStar) (dragStar as any)._dragging = false;
+            suppressClickFor.delete(releasedStar);
           }, 0);
-        } else {
-          (dragStar as any)._dragging = false;
         }
       }
 
@@ -310,7 +314,6 @@ export default function SkyNetwork({
         dragOffsetX = e.clientX - r.left;
         dragOffsetY = e.clientY - r.top;
 
-        (star as any)._dragging = false;
         star.setPointerCapture(e.pointerId);
 
         e.preventDefault();

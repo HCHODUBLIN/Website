@@ -1,5 +1,4 @@
 import * as React from "react";
-import type { KeywordTag } from "../data/detailsData";
 
 type IconProps = React.SVGProps<SVGSVGElement>;
 
@@ -162,15 +161,6 @@ export function IconKeywordImpactMeasurement({
     </svg>
   );
 }
-
-export const KEYWORD_ICON_MAP: Partial<
-  Record<KeywordTag, React.ComponentType<IconProps>>
-> = {
-  governance: IconKeywordGovernance,
-  "data-ai": IconKeywordDataAi,
-  transition: IconKeywordTransition,
-  "impact-measurement": IconKeywordImpactMeasurement,
-};
 
 export function IconLinkedIn({ className, ...props }: IconProps) {
   return (

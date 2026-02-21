@@ -148,7 +148,7 @@ export function chipLabel(key: ChipKey, keywords: Record<string, { label: string
   return v;
 }
 
-export function chipTone(_key: ChipKey) {
+export function chipTone() {
   return "border border-white/25 bg-transparent text-white/85";
 }
 export function sortChips(chips: ChipKey[], keywords: Record<string, { label: string }>) {
@@ -205,6 +205,7 @@ export function writeStoredChips(storageKey: string, keys: ChipKey[]) {
   try {
     sessionStorage.setItem(storageKey, JSON.stringify(keys));
   } catch {
+    // Ignore storage write errors (private mode/quota/security settings).
   }
 }
 
@@ -212,5 +213,6 @@ export function clearStoredChips(storageKey: string) {
   try {
     sessionStorage.removeItem(storageKey);
   } catch {
+    // Ignore storage removal errors (private mode/quota/security settings).
   }
 }
