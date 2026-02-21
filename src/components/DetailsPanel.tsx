@@ -19,25 +19,30 @@ const KEYWORD_ICON_MAP: Partial<
 const PHILOSOPHY: Record<KeywordTag, { blurb: string }> = {
   governance: {
     blurb:
-      "I design data models that translate fragmented inputs into clear entities, relationships, and metrics. This keeps analytical logic consistent, traceable, and directly usable for decision-making across teams.",
+      "Designing medallion architectures (Bronze/Silver/Gold), dimensional models, and entity resolution systems that turn fragmented data into trusted, decision-ready structures. Focus on data quality measurement (precision, recall, F1) and governance-compliant schema design.",
   },
   "data-ai": {
     blurb:
-      "I build analytics platforms and data pipelines that make complex, fragmented data usable at scale. My current work centres on designing medallion architectures (Bronze/Silver/Gold) on Snowflake, writing dbt transformation layers, and building LLM-based classification systems that process 200,000+ records with measurable accuracy improvements. My path into data engineering came through sustainability and urban research, which means I approach every technical decision with a question: who uses this data, and what decision does it need to support? This combination of engineering depth and domain-aware design thinking is what I bring to every project. Stack: Snowflake, dbt, Python, SQL, Azure (Data Factory, SQL, Blob Storage), Power BI, LLM/OpenAI API, Kafka, GitHub Actions CI/CD.",
+      "Developing LLM-based classification pipelines that process 200,000+ records with human-in-the-loop evaluation. Iterative prompt engineering and accuracy improvement (32% -> 74.5%) through structured evaluation frameworks.",
   },
   transition: {
     blurb:
-      "I build resilient data pipelines for ingestion, transformation, and quality controls, so complex datasets become production-ready assets rather than one-off analyses.",
+      "Building automated pipelines that ingest, transform, and deliver data at scale. Working with Snowflake, dbt, Kafka, and Airflow to create reproducible, tested, and version-controlled data workflows.",
   },
   "impact-measurement": {
     blurb:
-      "I deliver BI and reporting layers that connect technical pipelines to business decisions, turning model outputs into clear KPI views for operational and strategic use.",
+      "Translating complex data into actionable insights through Power BI dashboards, KPI frameworks, and executive reporting. Making analytical outputs usable and trusted by non-technical stakeholders.",
   },
   python: {
     blurb:
-      "I apply DevOps and quality practices across analytics workflows, including CI/CD, repeatable tests, and automation that keeps data systems reliable as they scale.",
+      "CI/CD with GitHub Actions, automated testing (dbt tests, schema validation), Docker containerisation, and comprehensive documentation (architecture decision records, ERDs, data dictionaries).",
   },
 };
+
+const STACK_LINE =
+  "Stack: Snowflake · dbt · SQL · Python · Power BI · LLM/OpenAI API · Kafka · GitHub Actions";
+const CLOUD_LINE =
+  "Cloud: Azure (Data Factory, SQL, Blob Storage) — AZ-900 certified";
 
 export default function DetailsPanel({
   activeTag,
@@ -48,7 +53,11 @@ export default function DetailsPanel({
     return (
       <div className="rounded-2xl border border-white/15 bg-black/40 p-5">
         <div className="text-[0.85rem] opacity-70">
-          Select a keyword to see my perspective.
+          Select a capability to see details.
+        </div>
+        <div className="mt-3 border-t border-white/10 pt-3 text-[0.78rem] leading-relaxed opacity-75">
+          <p className="m-0">{STACK_LINE}</p>
+          <p className="m-0 mt-1">{CLOUD_LINE}</p>
         </div>
       </div>
     );
@@ -62,7 +71,11 @@ export default function DetailsPanel({
     return (
       <div className="rounded-2xl border border-white/15 bg-black/40 p-5">
         <div className="text-[0.85rem] opacity-70">
-          Select a keyword to see my perspective.
+          Select a capability to see details.
+        </div>
+        <div className="mt-3 border-t border-white/10 pt-3 text-[0.78rem] leading-relaxed opacity-75">
+          <p className="m-0">{STACK_LINE}</p>
+          <p className="m-0 mt-1">{CLOUD_LINE}</p>
         </div>
       </div>
     );
@@ -83,6 +96,11 @@ export default function DetailsPanel({
           <p className="mt-2 text-[0.9rem] leading-relaxed opacity-80">
             {text}
           </p>
+
+          <div className="mt-3 border-t border-white/10 pt-3 text-[0.78rem] leading-relaxed opacity-75">
+            <p className="m-0">{STACK_LINE}</p>
+            <p className="m-0 mt-1">{CLOUD_LINE}</p>
+          </div>
 
           <div className="mt-3 flex items-center gap-3">
             <a
