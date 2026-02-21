@@ -162,6 +162,32 @@ export function IconKeywordImpactMeasurement({
   );
 }
 
+export function IconKeywordDevOpsQuality({ className, ...props }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      className={className}
+      {...props}
+    >
+      <path
+        d="M12 4.5l1.8 1.2 2.2-.4.7 2.1 2 1-.9 2 .9 2-2 1-.7 2.1-2.2-.4L12 19.5l-1.8-1.2-2.2.4-.7-2.1-2-1 .9-2-.9-2 2-1 .7-2.1 2.2.4L12 4.5z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9.5 12l1.8 1.8 3.2-3.3"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function IconLinkedIn({ className, ...props }: IconProps) {
   return (
     <svg

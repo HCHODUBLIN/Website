@@ -68,9 +68,7 @@ export default function BioPanel() {
 
           <div className="opacity-60 tabular-nums">2014–2019</div>
           <div>
-            <div className="leading-tight">
-              PhD Researcher (Network Analysis & Spatial Data Modelling)
-            </div>
+            <div className="leading-tight">PhD Researcher</div>
             <div className="opacity-60 leading-tight">
               University College London
             </div>

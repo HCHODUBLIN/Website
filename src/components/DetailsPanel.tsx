@@ -1,6 +1,7 @@
 import { KEYWORDS, type KeywordTag } from "../data/detailsData";
 import {
   IconKeywordDataAi,
+  IconKeywordDevOpsQuality,
   IconKeywordGovernance,
   IconKeywordImpactMeasurement,
   IconKeywordTransition,
@@ -14,6 +15,7 @@ const KEYWORD_ICON_MAP: Partial<
   "data-ai": IconKeywordDataAi,
   transition: IconKeywordTransition,
   "impact-measurement": IconKeywordImpactMeasurement,
+  python: IconKeywordDevOpsQuality,
 };
 
 const PHILOSOPHY: Record<KeywordTag, { blurb: string }> = {
