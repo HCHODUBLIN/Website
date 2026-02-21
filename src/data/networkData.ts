@@ -15,23 +15,20 @@ export type NetworkData = {
 
 export const NETWORK_DATA: NetworkData = {
   nodes: [
-    { id: "governance", label: "Snowflake" },
-    { id: "transition", label: "dbt" },
-    { id: "python", label: "Python" },
-    { id: "azure", label: "Azure" },
-    { id: "data-ai", label: "LLM Pipelines" },
-    { id: "impact-measurement", label: "Data Modelling" },
+    { id: "governance", label: "Data Modelling" },
+    { id: "transition", label: "Data Engineering" },
+    { id: "data-ai", label: "AI / ML" },
+    { id: "impact-measurement", label: "BI & Reporting" },
+    { id: "python", label: "DevOps & Quality" },
   ],
 
   edges: [
     { from: "governance", to: "transition" },
-    { from: "governance", to: "python" },
     { from: "governance", to: "impact-measurement" },
-    { from: "transition", to: "impact-measurement" },
-    { from: "transition", to: "azure" },
-    { from: "python", to: "azure" },
-    { from: "python", to: "data-ai" },
-    { from: "azure", to: "data-ai" },
+    { from: "transition", to: "data-ai" },
+    { from: "transition", to: "python" },
     { from: "data-ai", to: "impact-measurement" },
+    { from: "data-ai", to: "python" },
+    { from: "impact-measurement", to: "python" },
   ],
 };

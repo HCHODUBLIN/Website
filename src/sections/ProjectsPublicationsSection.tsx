@@ -203,7 +203,7 @@ export default function ProjectsPublicationsSection({
   return (
     <section
       className={embedded ? "py-0" : "py-16"}
-      id={embedded ? undefined : "projects-publications"}
+      id={embedded ? undefined : "projects"}
     >
       <div
         className={
@@ -274,7 +274,7 @@ export default function ProjectsPublicationsSection({
           {!embedded ? (
             <div className="flex items-start justify-between gap-4">
               <h3 className="text-[0.95rem] uppercase tracking-[0.1em] opacity-90">
-                Projects & Publications
+                Projects
               </h3>
 
               <div className="flex items-center gap-3">

@@ -19,7 +19,7 @@ const KEYWORD_ICON_MAP: Partial<
 const PHILOSOPHY: Record<KeywordTag, { blurb: string }> = {
   governance: {
     blurb:
-      "I design Snowflake warehouse layers that keep raw, transformed, and curated data clearly separated while preserving lineage and auditability. My focus is reliable performance, transparent ownership, and models that downstream teams can trust for operational and strategic decisions.",
+      "I design data models that translate fragmented inputs into clear entities, relationships, and metrics. This keeps analytical logic consistent, traceable, and directly usable for decision-making across teams.",
   },
   "data-ai": {
     blurb:
@@ -27,19 +27,15 @@ const PHILOSOPHY: Record<KeywordTag, { blurb: string }> = {
   },
   transition: {
     blurb:
-      "I use dbt to translate business and research logic into modular, testable transformation layers. Clear model contracts, documentation, and reproducible workflows make complex metrics explainable and keep analytics outputs stable as upstream systems evolve.",
+      "I build resilient data pipelines for ingestion, transformation, and quality controls, so complex datasets become production-ready assets rather than one-off analyses.",
   },
   "impact-measurement": {
     blurb:
-      "I treat data modelling as product design for decision systems. I define entities, relationships, and metric logic so teams can move from fragmented records to consistent, decision-ready views with explicit assumptions and traceable logic.",
+      "I deliver BI and reporting layers that connect technical pipelines to business decisions, turning model outputs into clear KPI views for operational and strategic use.",
   },
   python: {
     blurb:
-      "I use Python for ingestion, enrichment, validation, and quality controls across large datasets. The goal is repeatable, observable workflows that reduce manual review and improve reliability from source capture to model output.",
-  },
-  azure: {
-    blurb:
-      "I build and orchestrate Azure-based data workflows using Data Factory, Azure SQL, and Blob Storage. I focus on robust scheduling, secure handoffs between services, and predictable operations that support production analytics.",
+      "I apply DevOps and quality practices across analytics workflows, including CI/CD, repeatable tests, and automation that keeps data systems reliable as they scale.",
   },
 };
 
@@ -90,13 +86,13 @@ export default function DetailsPanel({
 
           <div className="mt-3 flex items-center gap-3">
             <a
-              href="#projects-publications"
+              href="#projects"
               className="text-[0.82rem] underline opacity-70 hover:opacity-100"
               onClick={() => {
-                window.location.hash = "#projects-publications";
+                window.location.hash = "#projects";
               }}
             >
-              View projects & publications →
+              View projects →
             </a>
           </div>
         </div>

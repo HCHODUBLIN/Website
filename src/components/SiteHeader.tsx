@@ -89,7 +89,7 @@ function TextButton({
 }
 
 export default function SiteHeader({
-  nav = [{ label: "Projects & Publications", href: "#projects-publications" }],
+  nav = [{ label: "Projects", href: "#projects" }],
 }: {
   nav?: NavItem[];
 }) {

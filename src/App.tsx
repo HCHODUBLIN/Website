@@ -6,7 +6,7 @@ import DetailsPanel from "./components/DetailsPanel";
 import type { KeywordTag } from "./data/detailsData";
 import ProjectsPublicationsSection from "./sections/ProjectsPublicationsSection";
 
-type OverlayKey = "projects-publications";
+type OverlayKey = "projects";
 
 export default function App() {
   const [activeTag, setActiveTag] = useState<KeywordTag | null>(null);
@@ -15,7 +15,7 @@ export default function App() {
   useEffect(() => {
     const applyFromHash = () => {
       const hash = (window.location.hash || "").replace("#", "");
-      if (hash === "projects-publications") setOverlay("projects-publications");
+      if (hash === "projects") setOverlay("projects");
       else setOverlay(null);
     };
 
@@ -35,7 +35,7 @@ export default function App() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [overlay]);
 
-  const overlayTitle = useMemo(() => "Projects & Publications", []);
+  const overlayTitle = useMemo(() => "Projects", []);
 
   return (
     <div className="min-h-screen bg-black text-neutral-100">
