@@ -22,7 +22,7 @@ import {
   isProject,
 } from "../data/itemHelpers";
 
-import { IconGlobe, IconLink, IconPdf } from "../components/icons";
+import { IconGitHub, IconGlobe, IconLink, IconPdf } from "../components/icons";
 
 const STORAGE_KEY = "pp_selected_chips_v1";
 
@@ -92,18 +92,28 @@ function RightActions({
             <IconLink className="h-4 w-4" />
           ) : a.kind === "pdf" ? (
             <IconPdf className="h-4 w-4" />
+          ) : a.kind === "github" ? (
+            <IconGitHub className="h-4 w-4" />
           ) : (
             <IconGlobe className="h-4 w-4" />
           );
 
         const tooltip =
-          a.kind === "doi" ? "DOI" : a.kind === "pdf" ? "PDF" : "Website";
+          a.kind === "doi"
+            ? "DOI"
+            : a.kind === "pdf"
+            ? "PDF"
+            : a.kind === "github"
+            ? "GitHub"
+            : "Website";
 
         const label =
           a.kind === "doi"
             ? "Open DOI"
             : a.kind === "pdf"
             ? "Open PDF"
+            : a.kind === "github"
+            ? "Open GitHub"
             : "Open website";
 
         return (

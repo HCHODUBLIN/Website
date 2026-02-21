@@ -16,7 +16,7 @@ export function getKind(item: Item): Kind {
 
 export type RightAction =
   | { kind: "doi" | "pdf"; href: string }
-  | { kind: "website"; href: string }
+  | { kind: "website" | "github"; href: string }
   | { kind: "logo"; src: string; alt: string };
 
 function isHttpUrl(s: string) {
@@ -46,9 +46,11 @@ export function getRightActions(item: Item): RightAction[] {
   if (isProject(item)) {
     const logo = String(item.links?.logo ?? "").trim();
     const website = String(item.links?.website ?? "").trim();
+    const github = String(item.links?.github ?? "").trim();
 
     if (logo) out.push({ kind: "logo", src: logo, alt: `${item.title} logo` });
     if (website) out.push({ kind: "website", href: website });
+    if (github) out.push({ kind: "github", href: github });
     
     return out;
   }

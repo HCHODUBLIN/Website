@@ -25,7 +25,7 @@ const PHILOSOPHY: Record<KeywordTag, { blurb: string }> = {
   },
   "data-ai": {
     blurb:
-      "Developing LLM-based classification pipelines that process 200,000+ records with human-in-the-loop evaluation. Iterative prompt engineering and accuracy improvement (32% -> 74.5%) through structured evaluation frameworks.",
+      "Developing LLM-based classification pipelines that process 200,000+ records with human-in-the-loop evaluation. Iterative prompt engineering and accuracy improvement (32% → 74.5%) through structured evaluation frameworks.",
   },
   transition: {
     blurb:
@@ -33,7 +33,7 @@ const PHILOSOPHY: Record<KeywordTag, { blurb: string }> = {
   },
   "impact-measurement": {
     blurb:
-      "Translating complex data into actionable insights through Power BI dashboards, KPI frameworks, and executive reporting. Making analytical outputs usable and trusted by non-technical stakeholders.",
+      "Translating complex data into actionable insights through Power BI dashboards, KPI frameworks, and executive reporting. Making analytical outputs usable and trusted by non-technical stakeholders and decision-makers.",
   },
   python: {
     blurb:

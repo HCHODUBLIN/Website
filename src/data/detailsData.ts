@@ -20,7 +20,7 @@ export const KEYWORDS = {
       "Building robust ingestion and transformation pipelines across cloud and warehouse systems.",
   },
   "impact-measurement": {
-    label: "BI & Reporting",
+    label: "Data Analytics & BI",
     description:
       "Delivering traceable reporting layers and KPI views that support operational and strategic decisions.",
   },
@@ -89,7 +89,7 @@ export const DETAILS_DATA: DetailsData = {
       kind: "project",
       id: "proj-cultivate",
       title: "CULTIVATE — Analytics Platform for 105 European Cities",
-      tags: ["data-ai", "transition", "governance"],
+      tags: ["governance", "transition", "data-ai", "python"],
       period: { type: "range", from: 2023, to: 2026 },
       funder: "EU Horizon 2020",
       summary:
@@ -102,13 +102,14 @@ export const DETAILS_DATA: DetailsData = {
       ],
       links: {
         website: "https://cultivate-project.eu/",
+        github: "https://github.com/HCHODUBLIN/cultivate-mapping-pipeline",
       },
     },
     {
       kind: "project",
       id: "proj-divaircity",
       title: "DivAirCity — IoT Analytics for Urban Environmental Monitoring",
-      tags: ["impact-measurement", "transition", "governance"],
+      tags: ["transition", "impact-measurement"],
       funder: "EU Horizon 2020",
       period: { type: "range", from: 2021, to: 2024 },
       summary:
@@ -120,6 +121,7 @@ export const DETAILS_DATA: DetailsData = {
       ],
       links: {
         website: "https://divaircity.eu/",
+        github: "https://github.com/HCHODUBLIN/divaircity-data-framework",
       },
     },
     {
@@ -127,7 +129,7 @@ export const DETAILS_DATA: DetailsData = {
       id: "proj-shareweave",
       title:
         "SHAREWEAVE: Mapping governance and social impact in food sharing networks",
-      tags: ["governance", "impact-measurement", "data-ai", "transition"],
+      tags: ["impact-measurement", "data-ai"],
       period: { type: "year", value: 2026 },
       funder: "Research Ireland",
       summary:
@@ -142,7 +144,7 @@ export const DETAILS_DATA: DetailsData = {
       kind: "project",
       id: "proj-uk2070",
       title: "UK 2070: Civil society, inequality and place-based disadvantage",
-      tags: ["governance"],
+      tags: ["impact-measurement"],
       funder: "Lincoln Institute of Land Policy / UK 2070 Commission",
       period: { type: "range", from: 2019, to: 2022 },
       summary:
@@ -157,7 +159,6 @@ export const DETAILS_DATA: DetailsData = {
       kind: "project",
       id: "proj-phd",
       title: "PhD research – Planning & participation",
-      tags: ["governance"],
       summary:
         "Doctoral research on recognition, planning practices and community participation in a diverse Seoul neighbourhood.",
       achievements: [
